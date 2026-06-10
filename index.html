@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>INFECTA EDUCAÇÃO</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --primary: #1565C0;
+  --primary-dark: #0D47A1;
+  --primary-light: #1976D2;
+  --secondary: #2E7D32;
+  --secondary-light: #388E3C;
+  --white: #FFFFFF;
+  --gray-light: #F5F7FA;
+  --gray-medium: #DDE3EA;
+  --gray-dark: #6B7280;
+  --text: #1A202C;
+  --text-light: #4A5568;
+  --danger: #C62828;
+  --warning: #F57F17;
+  --shadow: 0 2px 12px rgba(0,0,0,0.10);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.13);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --bottom-nav-h: 68px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--gray-light);
+  color:var(--text);
+  font-size:16px;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+.app-container{
+  max-width:480px;
+  margin:0 auto;
+  min-height:100vh;
+  position:relative;
+  background:var(--gray-light);
+}
+@media(min-width:768px){
+  .app-container{max-width:900px;}
+  body{background:#DDE3EA;}
+}
+.top-header{
+  background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);
+  color:#fff;
+  padding:16px 20px 12px;
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 2px 8px rgba(21,101,192,0.25);
+}
+.header-brand{display:flex;align-items:center;gap:10px;}
+.header-logo{
+  width:38px;height:38px;
+  background:rgba(255,255,255,0.15);
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+.header-title{font-size:17px;font-weight:700;letter-spacing:.5px;}
+.header-subtitle{font-size:10px;opacity:.8;font-weight:300;}
+.header-actions{display:flex;gap:8px;}
+.header-btn{
+  width:36px;height:36px;
+  background:rgba(255,255,255,0.15);
+  border:none;border-radius:8px;
+  color:#fff;font-size:16px;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:.2s;
+}
+.header-btn:hover{background:rgba(255,255,255,0.25);}
+.page{display:none;padding:16px 16px calc(var(--bottom-nav-h) + 16px);}
+.page.active{display:block;}
+.bottom-nav{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:480px;
+  height:var(--bottom-nav-h);
+  background:#fff;
+  border-top:1px solid var(--gray-medium);
+  display:flex;align-items:center;
+  box-shadow:0 -2px 12px rgba(0,0,0,0.08);
+  z-index:200;
+}
+@media(min-width:768px){.bottom-nav{max-width:900px;}}
+.nav-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;cursor:pointer;padding:8px 4px;
+  border:none;background:none;color:var(--gray-dark);
+  font-family:'Poppins',sans-serif;font-size:10px;font-weight:500;
+  transition:.2s;position:relative;
+}
+.nav-item.active{color:var(--primary);}
+.nav-item .nav-icon{font-size:22px;transition:.2s;}
+.nav-item.active .nav-icon{transform:translateY(-2px);}
+.nav-item::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:0;height:3px;background:var(--primary);border-radius:0 0 4px 4px;
+  transition:.2s;
+}
+.nav-item.active::before{width:32px;}
+.card{
+  background:#fff;border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;margin-bottom:14px;
+}
+.card-body{padding:16px;}
+.banner{
+  background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 60%,#0D47A1 100%);
+  border-radius:var(--radius);
+  padding:24px 20px;
+  color:#fff;margin-bottom:16px;
+  position:relative;overflow:hidden;
+}
+.banner::after{
+  content:'';position:absolute;right:-30px;top:-30px;
+  width:140px;height:140px;
+  background:rgba(255,255,255,0.07);border-radius:50%;
+}
+.banner::before{
+  content:'';position:absolute;right:20px;bottom:-40px;
+  width:100px;height:100px;
+  background:rgba(255,255,255,0.05);border-radius:50%;
+}
+.banner-tag{
+  display:inline-block;
+  background:rgba(255,255,255,0.2);
+  border-radius:20px;padding:4px 12px;
+  font-size:11px;font-weight:600;margin-bottom:10px;
+  letter-spacing:.5px;
+}
+.banner h1{font-size:22px;font-weight:700;line-height:1.3;margin-bottom:8px;}
+.banner p{font-size:13px;opacity:.88;line-height:1.6;}
+.banner-icon{
+  position:absolute;right:20px;top:50%;transform:translateY(-50%);
+  font-size:56px;opacity:.15;
+}
+.section-title{
+  font-size:16px;font-weight:700;color:var(--text);
+  margin-bottom:12px;display:flex;align-items:center;gap:8px;
+}
+.section-title i{color:var(--primary);}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+.stat-card{
+  background:#fff;border-radius:var(--radius-sm);
+  padding:14px 10px;text-align:center;
+  box-shadow:var(--shadow);
+}
+.stat-num{font-size:22px;font-weight:700;color:var(--primary);}
+.stat-label{font-size:10px;color:var(--gray-dark);margin-top:2px;line-height:1.3;}
+.highlight-card{
+  background:#fff;border-radius:var(--radius);
+  padding:14px 16px;
+  display:flex;align-items:center;gap:14px;
+  box-shadow:var(--shadow);margin-bottom:10px;
+  cursor:pointer;transition:.2s;
+}
+.highlight-card:hover{transform:translateY(-1px);box-shadow:var(--shadow-md);}
+.highlight-icon{
+  width:44px;height:44px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.highlight-card h4{font-size:14px;font-weight:600;margin-bottom:2px;}
+.highlight-card p{font-size:12px;color:var(--gray-dark);line-height:1.4;}
+.obj-box{
+  background:linear-gradient(135deg,#E3F2FD 0%,#BBDEFB 100%);
+  border-radius:var(--radius);padding:16px;margin-bottom:16px;
+  border-left:4px solid var(--primary);
+}
+.obj-box p{font-size:13px;color:var(--primary-dark);line-height:1.7;}
+.search-box{
+  display:flex;align-items:center;gap:10px;
+  background:#fff;border-radius:12px;padding:10px 16px;
+  box-shadow:var(--shadow);margin-bottom:16px;
+}
+.search-box i{color:var(--gray-dark);font-size:16px;}
+.search-box input{
+  flex:1;border:none;outline:none;
+  font-family:'Poppins',sans-serif;font-size:14px;
+  background:transparent;color:var(--text);
+}
+.search-box input::placeholder{color:var(--gray-dark);}
+.filter-chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:16px;scrollbar-width:none;}
+.filter-chips::-webkit-scrollbar{display:none;}
+.chip{
+  flex-shrink:0;padding:6px 14px;
+  border-radius:20px;border:1.5px solid var(--gray-medium);
+  background:#fff;color:var(--gray-dark);
+  font-size:12px;font-weight:500;cursor:pointer;
+  transition:.2s;white-space:nowrap;font-family:'Poppins',sans-serif;
+}
+.chip.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+.infections-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(min-width:600px){.infections-grid{grid-template-columns:repeat(3,1fr);}}
+.inf-card{
+  background:#fff;border-radius:var(--radius);
+  box-shadow:var(--shadow);overflow:hidden;cursor:pointer;
+  transition:.2s;
+}
+.inf-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.inf-card-img{
+  height:100px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:44px;
+}
+.inf-card-body{padding:10px 12px 12px;}
+.inf-card h4{font-size:13px;font-weight:600;margin-bottom:4px;line-height:1.3;}
+.inf-card p{font-size:11px;color:var(--gray-dark);line-height:1.4;}
+.inf-badge{
+  display:inline-block;font-size:10px;padding:2px 8px;
+  border-radius:20px;margin-top:6px;font-weight:500;
+}
+.detail-page{display:none;position:fixed;inset:0;background:var(--gray-light);z-index:300;overflow-y:auto;}
+.detail-page.open{display:block;}
+.detail-header{
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:#fff;padding:16px 16px 24px;position:sticky;top:0;z-index:10;
+}
+.detail-back{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.15);border:none;
+  color:#fff;font-family:'Poppins',sans-serif;font-size:14px;
+  padding:8px 14px;border-radius:8px;cursor:pointer;margin-bottom:12px;
+}
+.detail-header h2{font-size:20px;font-weight:700;}
+.detail-header .cat-badge{
+  display:inline-block;background:rgba(255,255,255,0.2);
+  border-radius:20px;padding:4px 12px;font-size:11px;margin-top:6px;
+}
+.detail-content{padding:16px;max-width:480px;margin:0 auto;}
+@media(min-width:768px){.detail-content{max-width:800px;}}
+.detail-hero{
+  border-radius:var(--radius);overflow:hidden;
+  height:180px;background:linear-gradient(135deg,var(--gray-medium),#c8d4e3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:72px;margin-bottom:16px;cursor:pointer;
+}
+.info-section{margin-bottom:20px;}
+.info-section h3{
+  font-size:15px;font-weight:700;color:var(--primary);
+  margin-bottom:10px;display:flex;align-items:center;gap:8px;
+  padding-bottom:6px;border-bottom:2px solid var(--gray-medium);
+}
+.info-section p,.info-section li{font-size:14px;line-height:1.8;color:var(--text-light);}
+.info-section ul,.info-section ol{padding-left:20px;}
+.symptom-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+.symptom-tag{
+  background:var(--gray-light);border:1px solid var(--gray-medium);
+  border-radius:8px;padding:6px 12px;
+  font-size:12px;color:var(--text);
+  display:flex;align-items:center;gap:6px;
+}
+.symptom-tag i{color:var(--danger);}
+.alert-box{
+  border-radius:var(--radius-sm);padding:14px;margin-bottom:12px;
+  display:flex;gap:12px;align-items:flex-start;
+}
+.alert-box.warning{background:#FFF8E1;border-left:4px solid var(--warning);}
+.alert-box.info{background:#E3F2FD;border-left:4px solid var(--primary);}
+.alert-box.danger{background:#FFEBEE;border-left:4px solid var(--danger);}
+.alert-box i{font-size:18px;margin-top:2px;flex-shrink:0;}
+.alert-box.warning i{color:var(--warning);}
+.alert-box.info i{color:var(--primary);}
+.alert-box.danger i{color:var(--danger);}
+.alert-box p{font-size:13px;line-height:1.6;}
+.guide-intro{
+  background:linear-gradient(135deg,var(--secondary) 0%,var(--secondary-light) 100%);
+  border-radius:var(--radius);padding:20px;color:#fff;margin-bottom:16px;
+}
+.guide-intro h3{font-size:18px;font-weight:700;margin-bottom:6px;}
+.guide-intro p{font-size:13px;opacity:.9;line-height:1.6;}
+.guide-step{
+  background:#fff;border-radius:var(--radius);
+  padding:18px;box-shadow:var(--shadow);margin-bottom:12px;
+  border-left:4px solid var(--primary);
+}
+.step-num{
+  font-size:11px;font-weight:700;color:var(--primary);
+  letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;
+}
+.step-question{font-size:16px;font-weight:600;margin-bottom:12px;line-height:1.4;}
+.step-options{display:flex;gap:10px;flex-wrap:wrap;}
+.step-btn{
+  flex:1;min-width:100px;
+  padding:12px 16px;border-radius:10px;
+  border:2px solid var(--gray-medium);
+  background:#fff;color:var(--text);
+  font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;
+  cursor:pointer;transition:.2s;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.step-btn:hover{border-color:var(--primary);color:var(--primary);}
+.step-btn.selected-yes{background:var(--secondary);color:#fff;border-color:var(--secondary);}
+.step-btn.selected-no{background:var(--danger);color:#fff;border-color:var(--danger);}
+.guide-result{
+  background:#fff;border-radius:var(--radius);
+  padding:20px;box-shadow:var(--shadow);
+  display:none;
+}
+.guide-result.visible{display:block;}
+.result-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.result-icon{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;font-size:26px;
+  flex-shrink:0;
+}
+.result-header h3{font-size:16px;font-weight:700;}
+.result-header p{font-size:12px;color:var(--gray-dark);}
+.checklist-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px;border-radius:10px;margin-bottom:8px;
+  background:var(--gray-light);cursor:pointer;transition:.2s;
+}
+.checklist-item:hover{background:var(--gray-medium);}
+.checklist-check{
+  width:22px;height:22px;border-radius:6px;
+  border:2px solid var(--gray-medium);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  transition:.2s;margin-top:1px;font-size:12px;color:#fff;
+}
+.checklist-item.checked .checklist-check{background:var(--secondary);border-color:var(--secondary);}
+.checklist-item p{font-size:13px;line-height:1.5;}
+.checklist-item.checked p{text-decoration:line-through;color:var(--gray-dark);}
+.guide-tabs{display:flex;gap:8px;margin-bottom:16px;overflow-x:auto;padding-bottom:4px;}
+.guide-tabs::-webkit-scrollbar{display:none;}
+.guide-tab{
+  flex-shrink:0;padding:8px 16px;border-radius:10px;
+  border:1.5px solid var(--gray-medium);background:#fff;
+  font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;
+  color:var(--gray-dark);cursor:pointer;transition:.2s;
+}
+.guide-tab.active{background:var(--secondary);color:#fff;border-color:var(--secondary);}
+.lib-card{
+  background:#fff;border-radius:var(--radius);
+  box-shadow:var(--shadow);margin-bottom:12px;
+  display:flex;overflow:hidden;cursor:pointer;transition:.2s;
+}
+.lib-card:hover{transform:translateY(-1px);box-shadow:var(--shadow-md);}
+.lib-card-icon{
+  width:80px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:32px;background:var(--gray-light);
+}
+.lib-card-body{padding:14px;}
+.lib-card h4{font-size:14px;font-weight:600;margin-bottom:4px;line-height:1.4;}
+.lib-card p{font-size:12px;color:var(--gray-dark);line-height:1.5;}
+.lib-badge{
+  display:inline-block;font-size:10px;padding:3px 10px;
+  border-radius:20px;margin-top:6px;font-weight:600;
+}
+#page-researcher{display:none;padding:16px 16px calc(var(--bottom-nav-h) + 16px);}
+#page-researcher.active{display:block;}
+.researcher-header{
+  background:linear-gradient(135deg,#37474F,#263238);
+  border-radius:var(--radius);padding:20px;color:#fff;margin-bottom:16px;
+}
+.researcher-header h2{font-size:18px;font-weight:700;margin-bottom:4px;}
+.researcher-header p{font-size:12px;opacity:.7;}
+.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.metric-card{background:#fff;border-radius:var(--radius-sm);padding:16px;box-shadow:var(--shadow);}
+.metric-card .m-num{font-size:26px;font-weight:700;color:var(--primary);}
+.metric-card .m-label{font-size:11px;color:var(--gray-dark);}
+.metric-card .m-trend{font-size:11px;color:var(--secondary);margin-top:2px;}
+.chart-bar-wrap{background:#fff;border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-bottom:12px;}
+.chart-bar-wrap h4{font-size:13px;font-weight:700;margin-bottom:12px;color:var(--text);}
+.bar-item{margin-bottom:10px;}
+.bar-label{display:flex;justify-content:space-between;font-size:12px;color:var(--text-light);margin-bottom:4px;}
+.bar-track{background:var(--gray-medium);border-radius:4px;height:8px;}
+.bar-fill{height:8px;border-radius:4px;background:var(--primary);}
+.module-table{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:12px;}
+.module-table table{width:100%;border-collapse:collapse;}
+.module-table th{background:var(--gray-light);font-size:11px;font-weight:700;padding:10px 14px;color:var(--gray-dark);text-align:left;text-transform:uppercase;letter-spacing:.5px;}
+.module-table td{font-size:12px;padding:10px 14px;border-top:1px solid var(--gray-medium);color:var(--text-light);}
+.complete-badge{display:inline-block;font-size:10px;padding:3px 8px;border-radius:20px;font-weight:600;}
+.badge-green{background:#E8F5E9;color:var(--secondary);}
+.badge-yellow{background:#FFF8E1;color:#F57F17;}
+.badge-red{background:#FFEBEE;color:var(--danger);}
+.lock-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:400;
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+.lock-overlay.visible{display:flex;}
+.lock-box{
+  background:#fff;border-radius:var(--radius);
+  padding:24px;width:100%;max-width:340px;
+  text-align:center;
+}
+.lock-box i{font-size:40px;color:var(--primary);margin-bottom:12px;}
+.lock-box h3{font-size:18px;font-weight:700;margin-bottom:6px;}
+.lock-box p{font-size:13px;color:var(--gray-dark);margin-bottom:16px;}
+.pin-input{display:flex;gap:10px;justify-content:center;margin-bottom:16px;}
+.pin-input input{
+  width:52px;height:52px;border-radius:10px;
+  border:2px solid var(--gray-medium);
+  text-align:center;font-size:22px;font-weight:700;
+  font-family:'Poppins',sans-serif;color:var(--primary);
+  outline:none;transition:.2s;
+}
+.pin-input input:focus{border-color:var(--primary);}
+.lock-btn{
+  width:100%;padding:14px;border-radius:10px;
+  background:var(--primary);color:#fff;
+  border:none;font-family:'Poppins',sans-serif;
+  font-size:15px;font-weight:600;cursor:pointer;transition:.2s;
+}
+.lock-btn:hover{background:var(--primary-dark);}
+.lock-cancel{
+  margin-top:10px;background:none;border:none;
+  color:var(--gray-dark);font-family:'Poppins',sans-serif;
+  font-size:13px;cursor:pointer;
+}
+#backToTop{
+  position:fixed;right:16px;bottom:calc(var(--bottom-nav-h) + 12px);
+  width:44px;height:44px;border-radius:50%;
+  background:var(--primary);color:#fff;
+  border:none;font-size:18px;cursor:pointer;
+  box-shadow:0 4px 12px rgba(21,101,192,0.4);
+  display:none;align-items:center;justify-content:center;z-index:190;
+}
+#backToTop.visible{display:flex;}
+.badge-blue{background:#E3F2FD;color:var(--primary);}
+.badge-green2{background:#E8F5E9;color:var(--secondary);}
+.badge-orange{background:#FFF3E0;color:#E65100;}
+.badge-purple{background:#F3E5F5;color:#7B1FA2;}
+.badge-red2{background:#FFEBEE;color:var(--danger);}
+.mt-8{margin-top:8px;}
+.secret-trigger{position:fixed;top:0;right:0;width:60px;height:60px;z-index:150;opacity:0;cursor:default;}
+.progress-bar-wrap{background:var(--gray-medium);border-radius:20px;height:6px;margin-bottom:16px;}
+.progress-bar-fill{height:6px;border-radius:20px;background:var(--secondary);transition:width .4s ease;}
+.img-modal{
+  position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:500;
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+.img-modal.open{display:flex;}
+.img-modal-inner{background:#fff;border-radius:var(--radius);max-width:100%;overflow:hidden;position:relative;}
+.img-modal-close{
+  position:absolute;top:10px;right:10px;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(0,0,0,0.5);color:#fff;
+  border:none;font-size:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;z-index:10;
+}
+.img-modal-body{padding:30px 40px;font-size:80px;text-align:center;min-width:250px;}
+.img-modal-caption{padding:0 20px 20px;font-size:13px;text-align:center;color:var(--gray-dark);}
+@media(min-width:768px){
+  .infections-grid{grid-template-columns:repeat(3,1fr);}
+  .stats-grid{grid-template-columns:repeat(5,1fr);}
+  .metric-grid{grid-template-columns:repeat(4,1fr);}
+  .page{padding:24px 24px calc(var(--bottom-nav-h) + 24px);}
+  .banner h1{font-size:26px;}
+}
+*:focus-visible{outline:3px solid var(--primary);outline-offset:2px;}
+</style>
+</head>
+<body>
+<div class="app-container">
+
+<header class="top-header">
+  <div class="header-brand">
+    <div class="header-logo"><i class="fas fa-bacterium"></i></div>
+    <div>
+      <div class="header-title">INFECTA EDUCAÇÃO</div>
+      <div class="header-subtitle">Plataforma Educacional de Enfermagem</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="header-btn" aria-label="Notificações"><i class="fas fa-bell"></i></button>
+    <button class="header-btn" aria-label="Menu"><i class="fas fa-ellipsis-v"></i></button>
+  </div>
+</header>
+
+<!-- PAGE: INÍCIO -->
+<div class="page active" id="page-home">
+  <div class="banner">
+    <div class="banner-tag"><i class="fas fa-graduation-cap"></i> Doutorado em Saúde</div>
+    <h1>Aprenda a identificar infecções de forma prática</h1>
+    <p>Conteúdo científico organizado para estudantes e profissionais de enfermagem.</p>
+    <div class="banner-icon" aria-hidden="true"><i class="fas fa-microscope"></i></div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Categorias</div></div>
+    <div class="stat-card"><div class="stat-num">9</div><div class="stat-label">Infecções</div></div>
+    <div class="stat-card"><div class="stat-num">10</div><div class="stat-label">Materiais</div></div>
+  </div>
+
+  <div class="obj-box">
+    <p><strong>Objetivo:</strong> Auxiliar estudantes de enfermagem na identificação de infecções por meio de conteúdos científicos organizados, imagens ilustrativas e material educativo de fácil consulta, baseado em evidências.</p>
+  </div>
+
+  <div class="section-title"><i class="fas fa-star"></i> Acesso Rápido</div>
+  <div class="highlight-card" onclick="switchTab('infections')" tabindex="0" onkeydown="if(event.key==='Enter')switchTab('infections')">
+    <div class="highlight-icon" style="background:#E3F2FD;color:var(--primary)"><i class="fas fa-virus"></i></div>
+    <div>
+      <h4>Tipos de Infecções</h4>
+      <p>Conteúdos organizados por categoria com sinais e sintomas.</p>
+    </div>
+    <i class="fas fa-chevron-right" style="color:var(--gray-dark);margin-left:auto;"></i>
+  </div>
+  <div class="highlight-card" onclick="switchTab('guide')" tabindex="0" onkeydown="if(event.key==='Enter')switchTab('guide')">
+    <div class="highlight-icon" style="background:#E8F5E9;color:var(--secondary)"><i class="fas fa-clipboard-check"></i></div>
+    <div>
+      <h4>Guia de Identificação</h4>
+      <p>Fluxograma interativo para análise de sinais clínicos.</p>
+    </div>
+    <i class="fas fa-chevron-right" style="color:var(--gray-dark);margin-left:auto;"></i>
+  </div>
+  <div class="highlight-card" onclick="switchTab('library')" tabindex="0" onkeydown="if(event.key==='Enter')switchTab('library')">
+    <div class="highlight-icon" style="background:#F3E5F5;color:#7B1FA2"><i class="fas fa-book-medical"></i></div>
+    <div>
+      <h4>Biblioteca Educacional</h4>
+      <p>Protocolos, estudos de caso e artigos científicos.</p>
+    </div>
+    <i class="fas fa-chevron-right" style="color:var(--gray-dark);margin-left:auto;"></i>
+  </div>
+
+  <div class="section-title mt-8"><i class="fas fa-info-circle"></i> Sobre</div>
+  <div class="card">
+    <div class="card-body">
+      <p style="font-size:13px;line-height:1.8;color:var(--text-light)">
+        O <strong>INFECTA EDUCAÇÃO</strong> é uma plataforma educacional digital desenvolvida como protótipo para validação acadêmica em pesquisa de doutorado, destinada a estudantes de enfermagem, técnicos, residentes e professores da área da saúde.
+      </p>
+      <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="lib-badge badge-blue"><i class="fas fa-user-graduate"></i> Estudantes</span>
+        <span class="lib-badge badge-green2"><i class="fas fa-hospital"></i> Residentes</span>
+        <span class="lib-badge badge-purple"><i class="fas fa-chalkboard-teacher"></i> Professores</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert-box info">
+    <i class="fas fa-info-circle"></i>
+    <p><strong>Nota Acadêmica:</strong> Este protótipo é parte de pesquisa de doutorado. O conteúdo é educativo e não substitui diagnóstico clínico profissional.</p>
+  </div>
+</div>
+
+<!-- PAGE: INFECÇÕES -->
+<div class="page" id="page-infections">
+  <div class="search-box">
+    <i class="fas fa-search"></i>
+    <input type="search" id="infSearch" placeholder="Buscar infecção..." aria-label="Buscar infecção" oninput="applyInfFilter()">
+  </div>
+  <div class="filter-chips">
+    <button class="chip active" onclick="setFilter(this,'todos')">Todos</button>
+    <button class="chip" onclick="setFilter(this,'respiratoria')">Respiratórias</button>
+    <button class="chip" onclick="setFilter(this,'urinaria')">Urinárias</button>
+    <button class="chip" onclick="setFilter(this,'pele')">Pele</button>
+    <button class="chip" onclick="setFilter(this,'hospitalar')">Hospitalares</button>
+    <button class="chip" onclick="setFilter(this,'sistemica')">Sistêmicas</button>
+  </div>
+  <div class="infections-grid" id="infectionsGrid"></div>
+</div>
+
+<!-- PAGE: GUIA -->
+<div class="page" id="page-guide">
+  <div class="guide-intro">
+    <h3><i class="fas fa-route"></i> Guia de Identificação</h3>
+    <p>Responda as perguntas para auxiliar na análise clínica. Este guia é educativo e não substitui diagnóstico profissional.</p>
+  </div>
+  <div class="guide-tabs">
+    <button class="guide-tab active" onclick="switchGuideTab(this,'fluxo')">Fluxograma</button>
+    <button class="guide-tab" onclick="switchGuideTab(this,'check')">Checklist</button>
+  </div>
+  <div id="guideFluxo">
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="guideProgressFill" style="width:0%"></div>
+    </div>
+    <div id="guideSteps"></div>
+    <div class="guide-result" id="guideResult">
+      <div class="result-header">
+        <div class="result-icon" id="resultIcon"></div>
+        <div><h3 id="resultTitle"></h3><p id="resultSub"></p></div>
+      </div>
+      <div id="resultBody"></div>
+      <button class="lock-btn" style="margin-top:14px;" onclick="resetGuide()">
+        <i class="fas fa-redo"></i> Reiniciar Avaliação
+      </button>
+    </div>
+  </div>
+  <div id="guideCheck" style="display:none">
+    <div class="section-title"><i class="fas fa-list-check"></i> Sinais e Sintomas Presentes</div>
+    <div id="checklistContainer"></div>
+    <div class="card" id="checkResult" style="display:none"><div class="card-body" id="checkResultBody"></div></div>
+  </div>
+</div>
+
+<!-- PAGE: BIBLIOTECA -->
+<div class="page" id="page-library">
+  <div class="search-box">
+    <i class="fas fa-search"></i>
+    <input type="search" id="libSearch" placeholder="Buscar material..." aria-label="Buscar material" oninput="applyLibFilter()">
+  </div>
+  <div class="filter-chips">
+    <button class="chip active" onclick="setLibFilter(this,'todos')">Todos</button>
+    <button class="chip" onclick="setLibFilter(this,'protocolo')">Protocolos</button>
+    <button class="chip" onclick="setLibFilter(this,'boas-praticas')">Boas Práticas</button>
+    <button class="chip" onclick="setLibFilter(this,'caso')">Casos Clínicos</button>
+    <button class="chip" onclick="setLibFilter(this,'artigo')">Artigos</button>
+    <button class="chip" onclick="setLibFilter(this,'referencia')">Referências</button>
+  </div>
+  <div id="libraryList"></div>
+</div>
+
+<!-- PAGE: RESEARCHER -->
+<div id="page-researcher">
+  <div class="researcher-header">
+    <h2><i class="fas fa-flask"></i> Área do Pesquisador</h2>
+    <p>Métricas de uso — Dados para validação científica</p>
+    <div style="margin-top:8px;font-size:11px;opacity:.6;">Acesso restrito • Doutorado em Saúde</div>
+  </div>
+  <div class="section-title"><i class="fas fa-chart-bar"></i> Métricas de Uso</div>
+  <div class="metric-grid">
+    <div class="metric-card"><div class="m-num">147</div><div class="m-label">Sessões totais</div><div class="m-trend"><i class="fas fa-arrow-up"></i> +12 hoje</div></div>
+    <div class="metric-card"><div class="m-num">4:32</div><div class="m-label">Tempo médio</div><div class="m-trend"><i class="fas fa-arrow-up"></i> +0:18</div></div>
+    <div class="metric-card"><div class="m-num">67%</div><div class="m-label">Taxa de conclusão</div><div class="m-trend"><i class="fas fa-arrow-up"></i> +3%</div></div>
+    <div class="metric-card"><div class="m-num">38</div><div class="m-label">Usuários únicos</div><div class="m-trend"><i class="fas fa-arrow-up"></i> +5</div></div>
+  </div>
+  <div class="chart-bar-wrap">
+    <h4><i class="fas fa-fire" style="color:var(--danger)"></i> Conteúdos Mais Acessados</h4>
+    <div class="bar-item"><div class="bar-label"><span>Infecção Respiratória</span><span>89%</span></div><div class="bar-track"><div class="bar-fill" style="width:89%"></div></div></div>
+    <div class="bar-item"><div class="bar-label"><span>Sepse</span><span>76%</span></div><div class="bar-track"><div class="bar-fill" style="width:76%"></div></div></div>
+    <div class="bar-item"><div class="bar-label"><span>ITU</span><span>64%</span></div><div class="bar-track"><div class="bar-fill" style="width:64%"></div></div></div>
+    <div class="bar-item"><div class="bar-label"><span>Infecção de Pele</span><span>52%</span></div><div class="bar-track"><div class="bar-fill" style="width:52%"></div></div></div>
+    <div class="bar-item"><div class="bar-label"><span>Guia de Identificação</span><span>41%</span></div><div class="bar-track"><div class="bar-fill" style="width:41%;background:var(--secondary)"></div></div></div>
+  </div>
+  <div class="chart-bar-wrap">
+    <h4><i class="fas fa-clock" style="color:var(--primary)"></i> Tempo por Seção (minutos)</h4>
+    <div class="bar-item"><div class="bar-label"><span>Biblioteca</span><span>6.2 min</span></div><div class="bar-track"><div class="bar-fill" style="width:80%;background:#7B1FA2"></div></div></div>
+    <div class="bar-item"><div class="bar-label"><span>Guia de Identificação</span><span>5.1 min</span></div><div class="bar-track"><div class="bar-fill" style="width:65%;background:var(--secondary)"></div></div></div>
+    <div class="bar-item"><div class="bar-label"><span>Tipos de Infecções</span><span>4.8 min</span></div><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></div>
+    <div class="bar-item"><div class="bar-label"><span>Início</span><span>1.3 min</span></div><div class="bar-track"><div class="bar-fill" style="width:17%"></div></div></div>
+  </div>
+  <div class="section-title"><i class="fas fa-table"></i> Taxa de Conclusão por Módulo</div>
+  <div class="module-table">
+    <table>
+      <thead><tr><th>Módulo</th><th>Acessos</th><th>Conclusão</th></tr></thead>
+      <tbody>
+        <tr><td>Infecções Respiratórias</td><td>131</td><td><span class="complete-badge badge-green">82%</span></td></tr>
+        <tr><td>Sepse / Sistêmicas</td><td>112</td><td><span class="complete-badge badge-green">71%</span></td></tr>
+        <tr><td>ITU</td><td>94</td><td><span class="complete-badge badge-yellow">58%</span></td></tr>
+        <tr><td>Guia de Identificação</td><td>60</td><td><span class="complete-badge badge-yellow">51%</span></td></tr>
+        <tr><td>Infecções de Pele</td><td>77</td><td><span class="complete-badge badge-red">34%</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="alert-box info">
+    <i class="fas fa-database"></i>
+    <p><strong>Nota:</strong> Dados simulados para prototipagem. Na versão final, dados serão coletados via analytics com consentimento (LGPD).</p>
+  </div>
+  <button class="lock-btn" style="background:#37474F;margin-top:8px;" onclick="lockResearcher()">
+    <i class="fas fa-lock"></i> Sair da Área Restrita
+  </button>
+  <div style="height:16px"></div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="nav-item active" id="nav-home" onclick="switchTab('home')">
+    <i class="fas fa-home nav-icon"></i><span>Início</span>
+  </button>
+  <button class="nav-item" id="nav-infections" onclick="switchTab('infections')">
+    <i class="fas fa-virus nav-icon"></i><span>Infecções</span>
+  </button>
+  <button class="nav-item" id="nav-guide" onclick="switchTab('guide')">
+    <i class="fas fa-clipboard-check nav-icon"></i><span>Guia</span>
+  </button>
+  <button class="nav-item" id="nav-library" onclick="switchTab('library')">
+    <i class="fas fa-book-medical nav-icon"></i><span>Biblioteca</span>
+  </button>
+</nav>
+</div>
+
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- DETAIL PAGE -->
+<div class="detail-page" id="detailPage">
+  <div class="detail-header">
+    <button class="detail-back" onclick="closeDetail()"><i class="fas fa-arrow-left"></i> Voltar</button>
+    <h2 id="detailTitle"></h2>
+    <span class="cat-badge" id="detailBadge"></span>
+  </div>
+  <div class="detail-content" id="detailContent"></div>
+</div>
+
+<!-- LOCK OVERLAY -->
+<div class="lock-overlay" id="lockOverlay">
+  <div class="lock-box">
+    <i class="fas fa-shield-halved"></i>
+    <h3>Área do Pesquisador</h3>
+    <p>Digite o PIN de acesso para visualizar as métricas de uso da plataforma.</p>
+    <div class="pin-input">
+      <input type="password" maxlength="1" id="pin1" inputmode="numeric" oninput="pinNext(this,'pin2')">
+      <input type="password" maxlength="1" id="pin2" inputmode="numeric" oninput="pinNext(this,'pin3')">
+      <input type="password" maxlength="1" id="pin3" inputmode="numeric" oninput="pinNext(this,'pin4')">
+      <input type="password" maxlength="1" id="pin4" inputmode="numeric" oninput="pinNext(this,null)">
+    </div>
+    <div id="pinError" style="color:var(--danger);font-size:12px;margin-bottom:10px;display:none;">PIN incorreto. Tente novamente.</div>
+    <button class="lock-btn" onclick="checkPin()"><i class="fas fa-unlock"></i> Acessar</button>
+    <br>
+    <button class="lock-cancel" onclick="closeLock()">Cancelar</button>
+  </div>
+</div>
+
+<!-- IMAGE MODAL -->
+<div class="img-modal" id="imgModal">
+  <div class="img-modal-inner">
+    <button class="img-modal-close" onclick="closeImgModal()"><i class="fas fa-times"></i></button>
+    <div class="img-modal-body" id="imgModalBody"></div>
+    <div class="img-modal-caption" id="imgModalCaption"></div>
+  </div>
+</div>
+
+<!-- Secret trigger: tap top-right corner 5x -->
+<div class="secret-trigger" onclick="secretTap()" title=""></div>
+
+<script>
+const infections = [
+  {id:'resp1',cat:'respiratoria',name:'Pneumonia Bacteriana',icon:'🫁',color:'#E3F2FD',badge:'badge-blue',badgeText:'Respiratória',
+   summary:'Infecção pulmonar bacteriana com alto potencial de gravidade.',
+   definition:'A pneumonia bacteriana é uma infecção aguda do parênquima pulmonar causada por agentes como Streptococcus pneumoniae, Staphylococcus aureus e Klebsiella pneumoniae.',
+   etiology:'Streptococcus pneumoniae (mais comum), Haemophilus influenzae, Staphylococcus aureus, Klebsiella pneumoniae, Pseudomonas aeruginosa (hospitalar).',
+   symptoms:['Febre alta (>38,5°C)','Tosse produtiva','Dispneia','Dor torácica pleurítica','Taquicardia','Crepitação à ausculta','Cianose (graves)'],
+   identification:['Radiografia de tórax: consolidação','Hemograma: leucocitose','Hemocultura','Escarro: cultura e Gram','PCR elevada','Procalcitonina'],
+   alertType:'warning',alertText:'A pneumonia pode evoluir para sepse. Avalie SEMPRE o índice CURB-65 para estratificação de risco.',
+   note:'Atenção para pneumonia hospitalar (HAP) em pacientes internados >48h — exige cobertura para Gram-negativos.'},
+
+  {id:'resp2',cat:'respiratoria',name:'Tuberculose Pulmonar',icon:'🦠',color:'#FFF8E1',badge:'badge-orange',badgeText:'Respiratória',
+   summary:'Doença infecciosa crônica causada pelo Mycobacterium tuberculosis.',
+   definition:'A tuberculose pulmonar é doença crônica causada pelo Mycobacterium tuberculosis, transmitida por via aérea. É de notificação compulsória.',
+   etiology:'Mycobacterium tuberculosis (bacilo de Koch). Transmissão por aerossóis de pacientes bacilíferos.',
+   symptoms:['Tosse persistente >3 semanas','Hemoptise','Emagrecimento','Sudorese noturna','Febre vespertina','Astenia intensa','Anorexia'],
+   identification:['Baciloscopia de escarro (BAAR)','Cultura de Micobactéria','Teste rápido molecular (TRM-TB)','Radiografia: cavitações em lobos superiores','PPD/IGRA'],
+   alertType:'danger',alertText:'Notificação compulsória imediata. Isolar o paciente e investigar contactantes. Iniciar tratamento conforme protocolo do Ministério da Saúde.',
+   note:'Tratamento padrão: esquema RHZE por 6 meses. Monitorar hepatotoxicidade.'},
+
+  {id:'uri1',cat:'urinaria',name:'Infecção do Trato Urinário',icon:'🫘',color:'#E8F5E9',badge:'badge-green2',badgeText:'Urinária',
+   summary:'Infecção bacteriana prevalente, especialmente em mulheres e idosos.',
+   definition:'ITU caracteriza-se pela presença e multiplicação de micro-organismos no trato urinário, podendo acometer uretra, bexiga (cistite) ou rins (pielonefrite).',
+   etiology:'Escherichia coli (80%), Klebsiella spp., Proteus mirabilis, Enterococcus faecalis, Staphylococcus saprophyticus.',
+   symptoms:['Disúria','Polaciúria','Urgência miccional','Hematúria','Dor suprapúbica','Urina turva ou fétida','Febre e calafrios (pielonefrite)'],
+   identification:['Exame de urina tipo 1 (EAS)','Urocultura com antibiograma','Leucocitúria e nitrito positivo','Hemograma (pielonefrite)','Ultrassonografia (casos complicados)'],
+   alertType:'info',alertText:'Pielonefrite requer internação e ATB IV. Coletar urocultura ANTES de iniciar antibiótico.',
+   note:'ITU recorrente (>3 episódios/ano): investigar fatores predisponentes e considerar profilaxia.'},
+
+  {id:'pele1',cat:'pele',name:'Celulite Bacteriana',icon:'🩹',color:'#FCE4EC',badge:'badge-red2',badgeText:'Pele',
+   summary:'Infecção bacteriana aguda da derme e tecido subcutâneo.',
+   definition:'A celulite é uma infecção bacteriana aguda não purulenta da derme e hipoderme, geralmente por estreptococos ou estafilococos.',
+   etiology:'Streptococcus pyogenes, Staphylococcus aureus (incluindo MRSA), Gram-negativos (imunossuprimidos).',
+   symptoms:['Eritema expansivo','Calor local','Edema','Dor intensa','Febre','Linfadenopatia regional','Pele brilhante e tensa'],
+   identification:['Diagnóstico clínico predominante','Hemograma: leucocitose','PCR e VHS elevados','Hemocultura (febre alta)','Cultura de secreção'],
+   alertType:'warning',alertText:'Diferenciar de erisipela e fasciite necrosante (emergência cirúrgica). Crepitação = EMERGÊNCIA.',
+   note:'Marcar com caneta os limites do eritema para monitorar progressão.'},
+
+  {id:'pele2',cat:'pele',name:'Erisipela',icon:'🔴',color:'#FFEBEE',badge:'badge-red2',badgeText:'Pele',
+   summary:'Infecção superficial da derme com eritema bem delimitado característico.',
+   definition:'A erisipela é infecção bacteriana superficial da derme com acometimento dos vasos linfáticos, caracterizada por placa eritematosa bem delimitada.',
+   etiology:'Streptococcus pyogenes (grupo A) — causa principal.',
+   symptoms:['Placa eritematosa bem delimitada','Bordas elevadas e nítidas','Calor e dor intensos','Febre alta','Calafrios','Linfangite','Bolhas (formas bolhosas)'],
+   identification:['Diagnóstico clínico','ASLO','Hemograma','Hemocultura (febre persistente)','Biópsia (casos atípicos)'],
+   alertType:'info',alertText:'Tratar com penicilina G IV (internados) ou amoxicilina oral (ambulatorial leve). Prevenir recidiva com penicilina benzatina mensal.',
+   note:'Principal porta de entrada: fissuras entre os dedos por tinea pedis. Tratar o fungo!'},
+
+  {id:'hosp1',cat:'hospitalar',name:'Infecção de Corrente Sanguínea',icon:'🩸',color:'#F3E5F5',badge:'badge-purple',badgeText:'Hospitalar',
+   summary:'ICSRC associada a cateter — uma das infecções hospitalares mais graves.',
+   definition:'Infecção de corrente sanguínea relacionada a cateter (ICSRC): bacteremia ou fungemia em paciente com cateter sem outro foco identificado.',
+   etiology:'S. coagulase-negativo, S. aureus, Enterococcus spp., Candida spp., Klebsiella spp., E. coli.',
+   symptoms:['Febre >38°C ou hipotermia','Calafrios intensos','Instabilidade hemodinâmica','Eritema/edema no sítio do cateter','Sinais de sepse'],
+   identification:['Hemoculturas pareadas (central + periférica)','Tempo diferencial de positividade','Cultura da ponta do cateter','Hemograma, PCR, Procalcitonina','Lactato sérico'],
+   alertType:'danger',alertText:'Remover cateter imediatamente quando ICSRC confirmada. Iniciar antibiótico empírico para MRSA (vancomicina).',
+   note:'Bundle de cateter: higienização das mãos, barreira máxima, clorexidina 2%, preferência pela veia subclávia.'},
+
+  {id:'hosp2',cat:'hospitalar',name:'Pneumonia Associada à VM',icon:'🫀',color:'#E8EAF6',badge:'badge-purple',badgeText:'Hospitalar',
+   summary:'PAV — principal infecção em UTI, com alta mortalidade.',
+   definition:'Pneumonia associada à ventilação mecânica (PAV): pneumonia que surge ≥48h após intubação endotraqueal e início de ventilação mecânica.',
+   etiology:'Pseudomonas aeruginosa, Acinetobacter baumannii, Klebsiella pneumoniae (ESBL+), S. aureus (MRSA), polimicrobiana.',
+   symptoms:['Novo infiltrado na RX','Febre ou hipotermia','Leucocitose ou leucopenia','Secreção traqueal purulenta','Queda da relação PaO2/FiO2'],
+   identification:['Cultura de secreção traqueal','Lavado broncoalveolar (padrão-ouro)','Hemograma, PCR','Procalcitonina','RX/TC de tórax','Hemocultura'],
+   alertType:'danger',alertText:'Bundle PAV: cabeceira 30-45°, higiene oral com clorexidina, pressão do cuff 20-30 cmH2O, interrupção diária de sedação.',
+   note:'Terapia de curta duração (7 dias) é recomendada para PAV sem imunossupressão ou Pseudomonas.'},
+
+  {id:'sist1',cat:'sistemica',name:'Sepse',icon:'⚠️',color:'#FFEBEE',badge:'badge-red2',badgeText:'Sistêmica',
+   summary:'Emergência médica — resposta desregulada do hospedeiro à infecção.',
+   definition:'Sepse: disfunção orgânica ameaçadora à vida causada por resposta desregulada do hospedeiro a uma infecção (Sepsis-3, 2016).',
+   etiology:'Qualquer agente infeccioso. Focos: pulmão (mais comum), abdome, trato urinário, corrente sanguínea, pele.',
+   symptoms:['Alteração aguda do SOFA ≥2 pontos','Hipotensão','Febre ou hipotermia','Taquicardia e taquipneia','Alteração do estado mental','Oligúria'],
+   identification:['Escore SOFA e qSOFA','Lactato sérico (>2 mmol/L)','Hemoculturas (2 pares antes ATB)','Hemograma, PCR, Procalcitonina','Função renal e hepática','Gasometria'],
+   alertType:'danger',alertText:'BUNDLE HORA 1: medir lactato, hemoculturas, antibiótico amplo espectro, cristaloides 30ml/kg, vasopressores se PAM<65. TEMPO É VIDA.',
+   note:'Choque séptico = sepse + vasopressor para PAM≥65 + lactato>2 mmol/L. Mortalidade: 40-50%.'},
+
+  {id:'sist2',cat:'sistemica',name:'Endocardite Infecciosa',icon:'❤️',color:'#FCE4EC',badge:'badge-red2',badgeText:'Sistêmica',
+   summary:'Infecção do endocárdio valvar — diagnóstico pelos critérios de Duke.',
+   definition:'A endocardite infecciosa (EI) é infecção do endocárdio, principalmente das válvulas cardíacas, formando vegetações que podem embolizar.',
+   etiology:'S. aureus (válvulas nativas), Streptococcus viridans (doença valvar prévia), Enterococcus, S. coagulase-negativo (próteses), Candida (UDIV).',
+   symptoms:['Febre persistente','Sopro cardíaco novo','Nódulos de Osler','Manchas de Janeway','Hemorragias em flâmula','Manchas de Roth','Esplenomegalia'],
+   identification:['Critérios de Duke','2-3 pares de hemoculturas','Ecocardiograma transtorácico/transesofágico','Hemograma, PCR, VHS','TC/PET-CT'],
+   alertType:'warning',alertText:'Iniciar antibiótico APENAS após hemoculturas (2 pares), salvo instabilidade hemodinâmica. Avaliação cirúrgica precoce.',
+   note:'EI em usuário de drogas IV: S. aureus, válvula tricúspide afetada principalmente.'},
+];
+
+const libraryItems = [
+  {id:'l1',cat:'protocolo',icon:'📋',title:'Protocolo de Prevenção de ICSRC',summary:'Bundle de medidas preventivas para infecção de corrente sanguínea relacionada a cateter, conforme ANVISA 2017.',badge:'badge-blue',badgeText:'Protocolo'},
+  {id:'l2',cat:'protocolo',icon:'🛡️',title:'Bundle de Prevenção de PAV',summary:'Conjunto de medidas para redução de pneumonia associada à ventilação mecânica em UTI.',badge:'badge-blue',badgeText:'Protocolo'},
+  {id:'l3',cat:'boas-praticas',icon:'🖐️',title:'Higienização das Mãos — WHO',summary:'Cinco momentos para higiene das mãos na prática clínica. Técnica correta e duração adequada.',badge:'badge-green2',badgeText:'Boas Práticas'},
+  {id:'l4',cat:'boas-praticas',icon:'💊',title:'Uso Racional de Antimicrobianos',summary:'Princípios de stewardship de antibióticos para redução da resistência bacteriana em ambiente hospitalar.',badge:'badge-green2',badgeText:'Boas Práticas'},
+  {id:'l5',cat:'caso',icon:'📖',title:'Caso Clínico: Sepse por E. coli',summary:'Paciente de 72 anos com sepse de foco urinário. Abordagem diagnóstica, manejo e desfecho clínico.',badge:'badge-orange',badgeText:'Caso Clínico'},
+  {id:'l6',cat:'caso',icon:'📖',title:'Caso Clínico: PAV por Acinetobacter',summary:'Paciente em VM há 10 dias evolui com novo infiltrado e piora respiratória. Diagnóstico diferencial e conduta.',badge:'badge-orange',badgeText:'Caso Clínico'},
+  {id:'l7',cat:'artigo',icon:'🔬',title:'Sepsis-3: Nova Definição de Sepse',summary:'Singer M et al. The Third International Consensus Definitions for Sepsis and Septic Shock. JAMA, 2016.',badge:'badge-purple',badgeText:'Artigo Científico'},
+  {id:'l8',cat:'artigo',icon:'🔬',title:'Surviving Sepsis Campaign 2021',summary:'Evans L et al. Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021.',badge:'badge-purple',badgeText:'Artigo Científico'},
+  {id:'l9',cat:'referencia',icon:'📚',title:'ANVISA — Manual de IRAS',summary:'Critérios diagnósticos de Infecções Relacionadas à Assistência à Saúde. Brasília: ANVISA, 2017.',badge:'badge-red2',badgeText:'Referência'},
+  {id:'l10',cat:'referencia',icon:'📚',title:'Harrison\'s Principles of Internal Medicine',summary:'Kasper DL et al. 21ª ed. New York: McGraw-Hill, 2022. Capítulos de Doenças Infecciosas.',badge:'badge-red2',badgeText:'Referência'},
+];
+
+const guideQuestions = [
+  {id:'q1',q:'O paciente apresenta febre (≥38°C) ou hipotermia (<36°C)?',yes:'q2',no:'q5'},
+  {id:'q2',q:'Existem sinais inflamatórios locais (eritema, calor, edema, dor)?',yes:'q3',no:'q4'},
+  {id:'q3',q:'Os sinais locais estão em pele ou tecido subcutâneo?',yes:'r_pele',no:'q3b'},
+  {id:'q3b',q:'O foco suspeito é pulmonar (tosse, dispneia, alteração na ausculta)?',yes:'r_resp',no:'r_outro'},
+  {id:'q4',q:'Há alteração de parâmetros sistêmicos (PA, FC, FR, consciência)?',yes:'r_sepse_alert',no:'q5'},
+  {id:'q5',q:'O paciente apresenta sintomas urinários (disúria, polaciúria, dor suprapúbica)?',yes:'r_itu',no:'r_baixo'},
+];
+
+const guideResults = {
+  r_pele:{icon:'🩹',color:'#FCE4EC',title:'Possível Infecção de Pele/Partes Moles',sub:'Celulite, erisipela ou infecção de ferida',
+    body:`<p style="font-size:13px;line-height:1.8;color:var(--text-light)">Investigar: inspeção da área, cultura de secreção (se presente), hemograma, PCR. Avaliar extensão e presença de crepitação.</p><div class="alert-box warning" style="margin-top:10px"><i class="fas fa-exclamation-triangle"></i><p>Crepitação ou necrose = emergência cirúrgica. Acionar equipe imediatamente.</p></div>`},
+  r_resp:{icon:'🫁',color:'#E3F2FD',title:'Possível Infecção Respiratória',sub:'Pneumonia, bronquite aguda ou pleurite',
+    body:`<p style="font-size:13px;line-height:1.8;color:var(--text-light)">Solicitar: radiografia de tórax, hemograma, PCR, oximetria, gasometria. Avaliar escore CURB-65 para estratificação de risco.</p><div class="alert-box info" style="margin-top:10px"><i class="fas fa-info-circle"></i><p>CURB-65 ≥2 indica internação. CURB-65 ≥3 considerar UTI.</p></div>`},
+  r_itu:{icon:'🫘',color:'#E8F5E9',title:'Possível Infecção do Trato Urinário',sub:'Cistite, pielonefrite ou ITU complicada',
+    body:`<p style="font-size:13px;line-height:1.8;color:var(--text-light)">Solicitar: EAS (urina tipo 1), urocultura com antibiograma. Febre alta e dor lombar sugerem pielonefrite — requer internação e ATB IV.</p>`},
+  r_sepse_alert:{icon:'⚠️',color:'#FFEBEE',title:'ATENÇÃO: Possível Sepse',sub:'Avaliação urgente necessária',
+    body:`<div class="alert-box danger"><i class="fas fa-exclamation-circle"></i><p><strong>EMERGÊNCIA:</strong> Aplicar qSOFA (FR≥22, alt. consciência, PAS≤100). Se ≥2 critérios — protocolo de sepse imediatamente.</p></div><p style="font-size:13px;line-height:1.8;color:var(--text-light);margin-top:10px">Bundle Hora 1: lactato, hemoculturas, antibiótico amplo espectro, 30ml/kg cristaloide, vasopressor se necessário.</p>`},
+  r_baixo:{icon:'✅',color:'#E8F5E9',title:'Baixa Suspeita de Infecção Ativa',sub:'Continuar observação clínica',
+    body:`<p style="font-size:13px;line-height:1.8;color:var(--text-light)">Com base nas respostas, o quadro não sugere fortemente infecção bacteriana ativa. Manter monitorização dos sinais vitais e reavaliação clínica. Considerar causas não-infecciosas.</p>`},
+  r_outro:{icon:'🔍',color:'#F3E5F5',title:'Investigação Adicional Necessária',sub:'Foco não claramente definido',
+    body:`<p style="font-size:13px;line-height:1.8;color:var(--text-light)">Solicitar: hemograma completo, PCR, procalcitonina, hemoculturas, urina tipo 1. Considerar avaliação com infectologista.</p>`},
+};
+
+const checklist = [
+  {id:'c1',text:'Febre (≥38°C) ou hipotermia (<36°C)'},
+  {id:'c2',text:'Taquicardia (FC > 100 bpm)'},
+  {id:'c3',text:'Taquipneia (FR > 20 irpm)'},
+  {id:'c4',text:'Leucocitose (>12.000) ou leucopenia (<4.000)'},
+  {id:'c5',text:'Sinais inflamatórios locais (eritema, calor, edema)'},
+  {id:'c6',text:'Tosse produtiva ou dispneia'},
+  {id:'c7',text:'Disúria, polaciúria ou dor suprapúbica'},
+  {id:'c8',text:'Hipotensão arterial (PAS < 90 mmHg)'},
+  {id:'c9',text:'Alteração do nível de consciência'},
+  {id:'c10',text:'Ferida, úlcera ou solução de continuidade na pele'},
+];
+
+let currentFilter = 'todos';
+let currentLibFilter = 'todos';
+let guideAnswers = {};
+let secretCount = 0;
+
+// --- TABS ---
+function switchTab(tab) {
+  ['home','infections','guide','library'].forEach(t => {
+    document.getElementById('page-'+t).classList.remove('active');
+    const n = document.getElementById('nav-'+t);
+    if(n){n.classList.remove('active');}
+  });
+  document.getElementById('page-researcher').classList.remove('active');
+  const page = document.getElementById('page-'+tab);
+  if(page) page.classList.add('active');
+  const nav = document.getElementById('nav-'+tab);
+  if(nav) nav.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// --- INFECTIONS ---
+function renderInfections(list) {
+  document.getElementById('infectionsGrid').innerHTML = list.map(inf => `
+    <div class="inf-card" onclick="openDetail('${inf.id}')" tabindex="0"
+         onkeydown="if(event.key==='Enter')openDetail('${inf.id}')">
+      <div class="inf-card-img" style="background:${inf.color}">${inf.icon}</div>
+      <div class="inf-card-body">
+        <h4>${inf.name}</h4>
+        <p>${inf.summary.substring(0,55)}...</p>
+        <span class="inf-badge ${inf.badge}">${inf.badgeText}</span>
+      </div>
+    </div>`).join('');
+}
+
+function setFilter(el, cat) {
+  document.querySelectorAll('#page-infections .chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  currentFilter = cat;
+  applyInfFilter();
+}
+
+function applyInfFilter() {
+  const q = (document.getElementById('infSearch').value || '').toLowerCase();
+  let list = infections;
+  if(currentFilter !== 'todos') list = list.filter(i => i.cat === currentFilter);
+  if(q) list = list.filter(i => i.name.toLowerCase().includes(q) || i.summary.toLowerCase().includes(q));
+  renderInfections(list);
+}
+
+// --- DETAIL ---
+function openDetail(id) {
+  const inf = infections.find(i => i.id === id);
+  if(!inf) return;
+  const alertIcon = inf.alertType==='danger'?'exclamation-circle':inf.alertType==='warning'?'exclamation-triangle':'info-circle';
+  document.getElementById('detailTitle').textContent = inf.name;
+  document.getElementById('detailBadge').textContent = inf.badgeText;
+  document.getElementById('detailContent').innerHTML = `
+    <div class="detail-hero" onclick="openImgModal('${inf.icon}','${inf.name}')">${inf.icon}</div>
+    <div class="info-section">
+      <h3><i class="fas fa-book-open"></i> Definição</h3>
+      <p>${inf.definition}</p>
+    </div>
+    <div class="info-section">
+      <h3><i class="fas fa-dna"></i> Etiologia</h3>
+      <p>${inf.etiology}</p>
+    </div>
+    <div class="info-section">
+      <h3><i class="fas fa-thermometer-half"></i> Sinais e Sintomas</h3>
+      <div class="symptom-list">${inf.symptoms.map(s=>`<span class="symptom-tag"><i class="fas fa-circle-dot"></i>${s}</span>`).join('')}</div>
+    </div>
+    <div class="info-section">
+      <h3><i class="fas fa-microscope"></i> Métodos de Identificação</h3>
+      <ul>${inf.identification.map(i=>`<li>${i}</li>`).join('')}</ul>
+    </div>
+    <div class="alert-box ${inf.alertType}">
+      <i class="fas fa-${alertIcon}"></i>
+      <p>${inf.alertText}</p>
+    </div>
+    <div class="info-section">
+      <h3><i class="fas fa-lightbulb"></i> Observações Importantes</h3>
+      <p>${inf.note}</p>
+    </div>
+    <div style="height:24px"></div>`;
+  document.getElementById('detailPage').classList.add('open');
+  document.getElementById('detailPage').scrollTop = 0;
+}
+
+function closeDetail() {
+  document.getElementById('detailPage').classList.remove('open');
+}
+
+// --- GUIDE ---
+function switchGuideTab(el, tab) {
+  document.querySelectorAll('.guide-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('guideFluxo').style.display = tab==='fluxo'?'block':'none';
+  document.getElementById('guideCheck').style.display = tab==='check'?'block':'none';
+}
+
+function renderGuide() {
+  const container = document.getElementById('guideSteps');
+  document.getElementById('guideResult').classList.remove('visible');
+  container.innerHTML = '';
+  let stepId = 'q1';
+  const steps = [];
+  while(stepId) {
+    const q = guideQuestions.find(q=>q.id===stepId);
+    if(!q) break;
+    steps.push(q);
+    const ans = guideAnswers[stepId];
+    if(!ans) break;
+    stepId = q[ans];
+    if(!stepId || stepId.startsWith('r_')) { if(stepId) showGuideResult(stepId); break; }
+  }
+  const done = steps.filter(s=>guideAnswers[s.id]).length;
+  const pct = Math.round((done / guideQuestions.length) * 100);
+  document.getElementById('guideProgressFill').style.width = Math.min(100,pct)+'%';
+  container.innerHTML = steps.map((q,i) => {
+    const ans = guideAnswers[q.id];
+    return `<div class="guide-step">
+      <div class="step-num">PASSO ${i+1}</div>
+      <div class="step-question">${q.q}</div>
+      <div class="step-options">
+        <button class="step-btn ${ans==='yes'?'selected-yes':''}" onclick="answerGuide('${q.id}','yes')">
+          <i class="fas fa-check"></i> Sim
+        </button>
+        <button class="step-btn ${ans==='no'?'selected-no':''}" onclick="answerGuide('${q.id}','no')">
+          <i class="fas fa-times"></i> Não
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function answerGuide(qid, ans) {
+  guideAnswers[qid] = ans;
+  // clear downstream answers
+  let clear = false;
+  guideQuestions.forEach(q => { if(clear) delete guideAnswers[q.id]; if(q.id===qid) clear=true; });
+  renderGuide();
+}
+
+function showGuideResult(resultId) {
+  const r = guideResults[resultId];
+  if(!r) return;
+  document.getElementById('resultIcon').textContent = r.icon;
+  document.getElementById('resultIcon').style.background = r.color;
+  document.getElementById('resultTitle').textContent = r.title;
+  document.getElementById('resultSub').textContent = r.sub;
+  document.getElementById('resultBody').innerHTML = r.body;
+  const result = document.getElementById('guideResult');
+  result.classList.add('visible');
+  setTimeout(()=>result.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
+}
+
+function resetGuide() {
+  guideAnswers = {};
+  document.getElementById('guideResult').classList.remove('visible');
+  document.getElementById('guideProgressFill').style.width='0%';
+  renderGuide();
+}
+
+function renderChecklist() {
+  document.getElementById('checklistContainer').innerHTML = checklist.map(item => `
+    <div class="checklist-item" id="check-${item.id}" onclick="toggleCheck('${item.id}')" tabindex="0"
+         onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();toggleCheck('${item.id}')}">
+      <div class="checklist-check" id="chk-${item.id}"></div>
+      <p>${item.text}</p>
+    </div>`).join('');
+}
+
+function toggleCheck(id) {
+  const el = document.getElementById('check-'+id);
+  const chk = document.getElementById('chk-'+id);
+  const checked = el.classList.toggle('checked');
+  chk.innerHTML = checked ? '<i class="fas fa-check"></i>' : '';
+  const count = document.querySelectorAll('.checklist-item.checked').length;
+  const result = document.getElementById('checkResult');
+  if(count >= 3) {
+    const sev = count>=7?'grave':count>=5?'moderada':'leve';
+    const col = count>=7?'var(--danger)':count>=5?'var(--warning)':'var(--secondary)';
+    const msg = count>=7?'Quadro clínico complexo. Avaliação médica urgente. Considerar sepse.':
+                count>=5?'Investigação laboratorial e clínica indicada. Identifique o foco.':
+                'Monitorar sinais vitais. Considerar exames complementares básicos.';
+    document.getElementById('checkResultBody').innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <i class="fas fa-chart-pie" style="color:${col};font-size:22px"></i>
+        <strong style="color:${col}">${count} sinais detectados — Suspeita ${sev}</strong>
+      </div>
+      <p style="font-size:13px;color:var(--text-light);line-height:1.7">${msg}</p>`;
+    result.style.display='block';
+  } else {
+    result.style.display='none';
+  }
+}
+
+// --- LIBRARY ---
+function renderLibrary(list) {
+  document.getElementById('libraryList').innerHTML = list.map(item => `
+    <div class="lib-card" tabindex="0" onclick="openImgModal('${item.icon}','${item.title}')"
+         onkeydown="if(event.key==='Enter')openImgModal('${item.icon}','${item.title}')">
+      <div class="lib-card-icon">${item.icon}</div>
+      <div class="lib-card-body">
+        <h4>${item.title}</h4>
+        <p>${item.summary}</p>
+        <span class="lib-badge ${item.badge}">${item.badgeText}</span>
+      </div>
+    </div>`).join('');
+}
+
+function setLibFilter(el, cat) {
+  document.querySelectorAll('#page-library .chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  currentLibFilter = cat;
+  applyLibFilter();
+}
+
+function applyLibFilter() {
+  const q = (document.getElementById('libSearch').value || '').toLowerCase();
+  let list = libraryItems;
+  if(currentLibFilter !== 'todos') list = list.filter(i => i.cat === currentLibFilter);
+  if(q) list = list.filter(i => i.title.toLowerCase().includes(q) || i.summary.toLowerCase().includes(q));
+  renderLibrary(list);
+}
+
+// --- RESEARCHER ---
+function secretTap() {
+  secretCount++;
+  if(secretCount >= 5) { secretCount = 0; openLock(); }
+}
+
+function openLock() {
+  ['pin1','pin2','pin3','pin4'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('pinError').style.display='none';
+  document.getElementById('lockOverlay').classList.add('visible');
+  setTimeout(()=>document.getElementById('pin1').focus(),100);
+}
+
+function closeLock() { document.getElementById('lockOverlay').classList.remove('visible'); }
+
+function pinNext(el, nextId) {
+  if(el.value.length >= 1 && nextId) document.getElementById(nextId).focus();
+  if(!nextId && el.value.length >= 1) setTimeout(checkPin, 100);
+}
+
+function checkPin() {
+  const pin = ['pin1','pin2','pin3','pin4'].map(id=>document.getElementById(id).value).join('');
+  if(pin === '2024') {
+    closeLock();
+    ['home','infections','guide','library'].forEach(t=>{
+      document.getElementById('page-'+t).classList.remove('active');
+      const n=document.getElementById('nav-'+t); if(n) n.classList.remove('active');
+    });
+    document.getElementById('page-researcher').classList.add('active');
+    window.scrollTo(0,0);
+  } else {
+    document.getElementById('pinError').style.display='block';
+    ['pin1','pin2','pin3','pin4'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('pin1').focus();
+  }
+}
+
+function lockResearcher() {
+  document.getElementById('page-researcher').classList.remove('active');
+  switchTab('home');
+}
+
+// --- MODALS ---
+function openImgModal(emoji, caption) {
+  document.getElementById('imgModalBody').textContent = emoji;
+  document.getElementById('imgModalCaption').textContent = caption;
+  document.getElementById('imgModal').classList.add('open');
+}
+function closeImgModal() { document.getElementById('imgModal').classList.remove('open'); }
+
+// --- SCROLL ---
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('backToTop');
+  btn.classList.toggle('visible', window.scrollY > 300);
+});
+
+// --- KEYBOARD ---
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') {
+    closeImgModal();
+    closeDetail();
+    closeLock();
+  }
+});
+
+// --- INIT ---
+renderInfections(infections);
+renderGuide();
+renderLibrary(libraryItems);
+renderChecklist();
+</script>
+</body>
+</html>
