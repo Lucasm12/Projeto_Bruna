@@ -55,7 +55,7 @@ body{
   display:flex;align-items:center;justify-content:center;
   font-size:20px;
 }
-.header-title{font-size:17px;font-weight:700;letter-spacing:.5px;}
+.header-title{font-size:17px;font-weight:700;letter-spacing:.5px;color:#FF9800;}
 .header-subtitle{font-size:10px;opacity:.8;font-weight:300;}
 .header-actions{display:flex;gap:8px;}
 .header-btn{
@@ -449,3 +449,37 @@ body{
   .banner h1{font-size:26px;}
 }
 *:focus-visible{outline:3px solid var(--primary);outline-offset:2px;}
+
+/* IRAS — quadros de identificação */
+.iras-question{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:#fff;border-radius:var(--radius);padding:16px;margin-bottom:12px;}
+.iras-question span{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;opacity:.85;}
+.iras-question h3{font-size:16px;font-weight:700;font-style:italic;line-height:1.4;margin-top:4px;}
+.iras-alert-label{background:#FFF3E0;color:#E65100;border-left:4px solid #FF9800;border-radius:var(--radius-sm);padding:10px 12px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-bottom:14px;}
+.iras-alert-label i{margin-right:4px;}
+.iras-box{background:#fff;border:1px solid var(--gray-medium);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:14px;overflow:hidden;}
+.iras-box-head{padding:12px 14px;font-size:14px;font-weight:700;color:#fff;line-height:1.4;}
+.iras-box-head i{margin-right:6px;}
+.iras-criteria .iras-box-head{background:var(--primary);}
+.iras-signs .iras-box-head{background:var(--secondary);}
+.iras-aspects .iras-box-head{background:#E65100;}
+.iras-box-body{padding:14px;font-size:13.5px;line-height:1.7;color:var(--text-light);}
+.iras-box-body h5{font-size:14px;color:var(--text);margin:12px 0 6px;}
+.iras-box-body h5:first-child{margin-top:0;}
+.iras-box-body p{margin-bottom:8px;}
+.iras-box-body ul{padding-left:20px;margin-bottom:8px;}
+.iras-box-body li{margin-bottom:6px;}
+.iras-box-body strong{color:var(--text);}
+.iras-box-body sup{font-size:10px;}
+.iras-box-body .plus{text-align:center;font-size:20px;font-weight:700;color:var(--secondary);margin:4px 0;}
+.iras-box-body .obs{background:var(--gray-light);border-radius:var(--radius-sm);padding:10px;margin-top:8px;}
+.iras-aspect{border-radius:var(--radius-sm);padding:12px;margin-bottom:10px;border-left:4px solid;}
+.iras-aspect:last-child{margin-bottom:0;}
+.iras-aspect h5{margin-top:0;}
+.iras-aspect.info{background:#E3F2FD;border-color:var(--primary);}
+.iras-aspect.info h5 i{color:var(--primary);}
+.iras-aspect.warning{background:#FFF8E1;border-color:var(--warning);}
+.iras-aspect.warning h5 i{color:var(--warning);}
+.iras-aspect.danger{background:#FFEBEE;border-color:var(--danger);}
+.iras-aspect.danger h5 i{color:var(--danger);}
+.iras-aspect.success{background:#E8F5E9;border-color:var(--secondary);}
+.iras-aspect.success h5 i{color:var(--secondary);}

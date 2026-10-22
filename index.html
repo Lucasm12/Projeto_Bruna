@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>INFECTA EDUCAÇÃO</title>
+<title>INFECTALERT</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -15,7 +15,7 @@
     <div class="header-brand">
       <div class="header-logo"><i class="fas fa-bacterium"></i></div>
       <div>
-        <div class="header-title">INFECTA EDUCAÇÃO</div>
+        <div class="header-title">INFECTALERT</div>
         <div class="header-subtitle">Plataforma Educacional de Enfermagem</div>
       </div>
     </div>
@@ -28,14 +28,14 @@
   <!-- PAGE: INÍCIO -->
   <div class="page active" id="page-home">
     <div class="banner">
-      <div class="banner-tag"><i class="fas fa-graduation-cap"></i> Doutorado em Saúde</div>
+      <div class="banner-tag"><i class="fas fa-graduation-cap"></i> Estou diante de uma infecção?</div>
       <h1>Aprenda a identificar infecções de forma prática</h1>
       <p>Conteúdo científico organizado para estudantes e profissionais de enfermagem.</p>
       <div class="banner-icon" aria-hidden="true"><i class="fas fa-microscope"></i></div>
     </div>
     <div class="stats-grid">
-      <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Categorias</div></div>
-      <div class="stat-card"><div class="stat-num">9</div><div class="stat-label">Infecções</div></div>
+      <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Categorias</div></div>
+      <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Infecções</div></div>
       <div class="stat-card"><div class="stat-num">10</div><div class="stat-label">Materiais</div></div>
     </div>
     <div class="obj-box">
@@ -84,11 +84,10 @@
     </div>
     <div class="filter-chips">
       <button class="chip active" onclick="setFilter(this,'todos')">Todos</button>
-      <button class="chip" onclick="setFilter(this,'respiratoria')">Respiratórias</button>
-      <button class="chip" onclick="setFilter(this,'urinaria')">Urinárias</button>
-      <button class="chip" onclick="setFilter(this,'pele')">Pele</button>
-      <button class="chip" onclick="setFilter(this,'hospitalar')">Hospitalares</button>
-      <button class="chip" onclick="setFilter(this,'sistemica')">Sistêmicas</button>
+      <button class="chip" onclick="setFilter(this,'respiratoria')">PAV</button>
+      <button class="chip" onclick="setFilter(this,'urinaria')">ITU-AC</button>
+      <button class="chip" onclick="setFilter(this,'cirurgica')">ISC</button>
+      <button class="chip" onclick="setFilter(this,'sanguinea')">IPCS</button>
     </div>
     <div class="infections-grid" id="infectionsGrid"></div>
   </div>

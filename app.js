@@ -1,84 +1,224 @@
 const infections = [
-  {id:'resp1',cat:'respiratoria',name:'Pneumonia Bacteriana',icon:'🫁',color:'#E3F2FD',badge:'badge-blue',badgeText:'Respiratória',
-   summary:'Infecção pulmonar bacteriana com alto potencial de gravidade.',
-   definition:'A pneumonia bacteriana é uma infecção aguda do parênquima pulmonar causada por agentes como Streptococcus pneumoniae, Staphylococcus aureus e Klebsiella pneumoniae.',
-   etiology:'Streptococcus pneumoniae (mais comum), Haemophilus influenzae, Staphylococcus aureus, Klebsiella pneumoniae, Pseudomonas aeruginosa (hospitalar).',
-   symptoms:['Febre alta (>38,5°C)','Tosse produtiva','Dispneia','Dor torácica pleurítica','Taquicardia','Crepitação à ausculta','Cianose (graves)'],
-   identification:['Radiografia de tórax: consolidação','Hemograma: leucocitose','Hemocultura','Escarro: cultura e Gram','PCR elevada','Procalcitonina'],
-   alertType:'warning',alertText:'A pneumonia pode evoluir para sepse. Avalie SEMPRE o índice CURB-65 para estratificação de risco.',
-   note:'Atenção para pneumonia hospitalar (HAP) em pacientes internados >48h — exige cobertura para Gram-negativos.'},
+  {id:'pav',cat:'respiratoria',name:'Pneumonia Associada à Ventilação Mecânica',sigla:'PAV',icon:'🫁',color:'#E3F2FD',badge:'badge-blue',badgeText:'IRAS • PAV',
+   question:'Estou diante de uma Pneumonia Associada à Ventilação Mecânica – PAV?',
+   summary:'Pneumonia em paciente em uso de ventilação mecânica por mais de dois dias consecutivos.',
+   criteriaTitle:'O paciente se enquadra nos critérios definidores de PAV?',
+   criteria:`
+     <h5>Critérios iniciais para a identificação<sup>(1)</sup>:</h5>
+     <p>Trata-se de um paciente <strong>com pneumonia</strong>, que seja adulto ou criança acima de 1 ano (que não seja imunodeprimido, e que não tenha doença cardíaca ou pulmonar de base) em <strong>uso de Ventilação Mecânica (VM)</strong> por um período maior que dois dias consecutivos e que, mediante a infecção, o paciente estava em VM ou a VM havia sido removida no dia anterior.</p>
+     <h5>O que é o Ventilador mecânico (VM):</h5>
+     <p>Dispositivo utilizado para auxiliar ou controlar a respiração de forma contínua, por uma pressão positiva que destina oxigênio para as vias aéreas, de forma:</p>
+     <ul>
+       <li><strong>Invasiva</strong>: através de traqueostomia (abertura cirúrgica direto na traqueia com uso de uma cânula ligada à um ventilador) ou por intubação endotraqueal (uso de um tubo respiratório da boca à traqueia);</li>
+       <li><strong>Não invasiva</strong>: através do CPAP, que oferece uma única pressão positiva durante todo o ciclo respiratório; ou BIPAP, no qual o aparelho trabalha com duas pressões diferentes, a inspiratória e a expiratória. Ambos com uso via máscara nasal ou máscara facial<sup>(1)</sup>.</li>
+     </ul>`,
+   signsTitle:'Há sinais clínicos, laboratoriais e radiológicos, que sugerem PAV?',
+   signs:`
+     <h5>Evidências radiológicas / laboratoriais / clínicas<sup>(1)</sup>:</h5>
+     <p><u>1 ou mais exames de imagem (seriados) com</u>:</p>
+     <ul>
+       <li><strong>Presença de infiltrado</strong> (acúmulo anormal de líquidos e/ou substâncias no tecido pulmonar) OU <strong>opacificação/consolidação</strong> (área densa) OU <strong>Cavitação/pneumatocele</strong> (cavidade ou espaços císticos intrapulmonares);</li>
+     </ul>
+     <div class="plus">+</div>
+     <p><u>Pelo menos 1 dos sinais e sintomas</u>:</p>
+     <ul>
+       <li><strong>Febre</strong> (temperatura: &gt;38ºC); OU <strong>leucopenia</strong> (leucócitos &lt; 4.000 células/mm³) OU <strong>leucocitose</strong> (leucócitos &gt; 12.000 células/mm³) em adultos, e alteração do nível de consciência (sem outra causa aparente) em pacientes ≥70 anos;</li>
+     </ul>
+     <div class="plus">+</div>
+     <p><u>Pelo menos DOIS dos sinais e sintomas</u>:</p>
+     <ul>
+       <li>O <strong>surgimento de secreção purulenta</strong> OU <strong>mudança nas características da secreção</strong> (cor, consistência, odor e quantidade) OU <strong>aumento da secreção</strong> respiratória OU <strong>aumento da necessidade de aspiração</strong>;</li>
+       <li><strong>Apneia</strong> OU <strong>taquipneia</strong> OU <strong>dispneia</strong> OU <strong>tosse</strong> (episódio novo ou com agravamento);</li>
+       <li><strong>Ausculta com sibilos, roncos ou estertores</strong> (episódio novo ou com agravamento);</li>
+       <li><strong>Piora da troca gasosa, queda da saturação, aumento da demanda de oxigênio ou aumento dos parâmetros ventilatórios, por pelo menos 2 dias.</strong></li>
+     </ul>
+     <p class="obs"><strong>Observação</strong>: Contando que, os indícios radiológicos / laboratoriais / clínicos, ocorreram no período de janela de infecção (intervalo temporal de 7 dias durante os quais são identificadas as evidências acima)<sup>(1,2,3)</sup>.</p>`,
+   aspects:[
+     {title:'Sobre PAV',type:'info',html:`
+       <p>Corresponde a IRA de maior mortalidade, segundo dados atuais! Logo, sua identificação precoce é indispensável, e deve incluir a <strong>análise de uma combinação de fatores</strong>:</p>
+       <ul><li><strong>Avaliação clínica de sinais e sintomas</strong> infecciosos por meio do exame físico, radiografia ou tomografia torácica; + <strong>Dados laboratoriais</strong> incluindo leucócitos, e biomarcadores inflamatórios como Procalcitonina (PCT) &gt; 1,86 ng/mL e Proteína C Reativa (PCR) &gt; 88 mg/L (ref019), testes microbiológicos de secreções respiratórias, com culturas de escarro<sup>(4,5,6,7,8,9,10,11)</sup>.</li></ul>`},
+     {title:'Atenção',type:'warning',html:`
+       <ul>
+         <li>O <strong>declínio da oxigenação</strong> (hipoxemia) é um parâmetro clínico de fácil detecção, e que sinaliza um alerta ao profissional de saúde<sup>(7,10,11)</sup>.</li>
+         <li>A <strong>tomografia computadorizada (TC)</strong> é particularmente mais sensível para demonstrar doenças parenquimatosas ou pleurais nas bases pulmonares póstero-inferiores, embora este exame possa ser impraticável para muitos pacientes de UTI<sup>(6,8)</sup>.</li>
+         <li>Há muitas maneiras de detectar uma <strong>aparência radiográfica de pneumonia</strong>. Os laudos radiológicos irão incluir: “doença do espaço aéreo”, “opacidade focal” e “áreas de aumento da densidade”. Em situações clínicas sugestivas à pneumonia, estas descrições devem ser fortemente consideradas como achados positivos<sup>(3,9)</sup>.</li>
+         <li>Outras condições não infecciosas (como edema pulmonar e insuficiência cardíaca congestiva) podem simular a presença de pneumonia. Nestes casos mais difíceis, <strong>radiografias torácicas seriadas</strong> precisam ser analisadas minuciosamente!<sup>(3)</sup>.</li>
+       </ul>`},
+     {title:'Cuidado',type:'danger',html:`
+       <ul>
+         <li>Apesar de não se encaixar nas descrições oficiais de estertores, sibilos ou roncos, os <strong>sons de gorgolejo</strong> (ruído produzido pelos movimentos oscilatórios de secreções nas vias aéreas superiores, associados à respiração inspiratória e expiratória) ouvidos durante a respiração tranquila ou por intermédio da fala, ou auscultados sobre a laringe, estão fortemente associados à PAV<sup>(12)</sup>.</li>
+         <li>O exame físico e a radiografia de tórax são insuficientes para a confirmação diagnóstica de PAV, mas fornecem dados cruciais para a identificação inicial da PAV. A partir destes, recomenda-se avançar para o diagnóstico com procedimentos que permitam a <strong>identificação do patógeno responsável</strong> pela infecção, por meio de cultura de secreções do trato respiratório inferior<sup>(13)</sup>.</li>
+         <li>É valido destacar que o crescimento de mais um microrganismo ou mudança no patógeno em cultura, isoladamente, não é indicativo de novo episódio de pneumonia. Também, uma única anotação sobre a mudança nas características da secreção ou sobre a presença de secreção purulenta não é significativa; pois <strong>repetidas anotações durante um período de 24 horas</strong> seriam mais prudentes como um indicativo do início de um processo infeccioso<sup>(3,8)</sup>.</li>
+       </ul>`},
+     {title:'Lembre-se',type:'success',html:`
+       <p>Para quesitos de identificação da <strong>Taquipneia</strong>, considera-se<sup>(3)</sup>:</p>
+       <ul>
+         <li>Adultos: frequência respiratória &gt; 22 incursões respiratórias por minuto;</li>
+         <li>Crianças com mais de 1 ano de idade: frequência respiratória &gt; 30 incursões respiratórias por minuto;</li>
+         <li>Lactente com menos de 2 meses de idade: frequência respiratória &gt; 60 incursões respiratórias por minuto;</li>
+         <li>Lactente de 2-12 meses de idade: frequência respiratória &gt; 50 incursões respiratórias por minuto<sup>(3)</sup>.</li>
+       </ul>`},
+   ]},
 
-  {id:'resp2',cat:'respiratoria',name:'Tuberculose Pulmonar',icon:'🦠',color:'#FFF8E1',badge:'badge-orange',badgeText:'Respiratória',
-   summary:'Doença infecciosa crônica causada pelo Mycobacterium tuberculosis.',
-   definition:'A tuberculose pulmonar é doença crônica causada pelo Mycobacterium tuberculosis, transmitida por via aérea. É de notificação compulsória.',
-   etiology:'Mycobacterium tuberculosis (bacilo de Koch). Transmissão por aerossóis de pacientes bacilíferos.',
-   symptoms:['Tosse persistente >3 semanas','Hemoptise','Emagrecimento','Sudorese noturna','Febre vespertina','Astenia intensa','Anorexia'],
-   identification:['Baciloscopia de escarro (BAAR)','Cultura de Micobactéria','Teste rápido molecular (TRM-TB)','Radiografia: cavitações em lobos superiores','PPD/IGRA'],
-   alertType:'danger',alertText:'Notificação compulsória imediata. Isolar o paciente e investigar contactantes. Iniciar tratamento conforme protocolo do Ministério da Saúde.',
-   note:'Tratamento padrão: esquema RHZE por 6 meses. Monitorar hepatotoxicidade.'},
+  {id:'itu-ac',cat:'urinaria',name:'Infecção de Trato Urinário Associada à Cateter Vesical de Demora',sigla:'ITU-AC',icon:'🫘',color:'#E8F5E9',badge:'badge-green2',badgeText:'IRAS • ITU-AC',
+   question:'Estou diante de uma Infecção de Trato Urinário Associada à Cateter Vesical de Demora – ITU-AC?',
+   summary:'Infecção urinária em paciente com cateter vesical de demora por mais de dois dias consecutivos.',
+   criteriaTitle:'O paciente se enquadra nos critérios definidores de ITU / ITU-RAS / ITU-AC?',
+   criteria:`
+     <h5>Critérios iniciais para a identificação<sup>(1)</sup>:</h5>
+     <ul>
+       <li>A <strong>Infecção do Trato Urinário – ITU</strong> é detectada pela presença de um ou mais microrganismos identificados por meio de cultura de urina, em pacientes com sinais ou sintomas (não havendo sinais e sintomas, trata-se de ITU assintomática)<sup>(1)</sup>.</li>
+       <li><strong>Infecções do trato urinário relacionada à assistência à saúde (ITU-RAS)</strong>: definida como qualquer infecção do trato urinário relacionada a procedimento urológico, podendo ser associada ou não ao uso de cateter vesical de demora<sup>(3)</sup>.</li>
+       <li><strong>ITU Associada à Cateter vesical de demora (ITU-AC):</strong> infecção do trato urinário em paciente com cateter vesical de demora instalado por um período maior que dois dias consecutivos e, na data da infecção, o paciente estava com o cateter instalado ou este havia sido removido no dia anterior<sup>(1,3)</sup>.</li>
+     </ul>
+     <h5>O que é Cateter Vesical de Demora (CVD):</h5>
+     <p>É um tubo de drenagem inserido na bexiga através da uretra e que permanece instalado na região, o que o difere do cateterismo vesical de alívio. Inclusive, este CVD é conectado a uma bolsa coletora que armazena o volume de urina secretada<sup>(1)</sup>.</p>`,
+   signsTitle:'Há sinais clínicos e laboratoriais que sugerem ITU-AC?',
+   signs:`
+     <h5>Evidências clínicas / laboratoriais:</h5>
+     <p>ITU – AC em adultos e crianças &gt; 3 anos, que apresentam pelo menos UM dos seguintes <u>sinais e sintomas</u>, sem outras causas reconhecidas:</p>
+     <ul>
+       <li><strong>Febre (Tª &gt;38ºC)</strong>;</li>
+       <li><strong>Dor ou desconforto supra púbico</strong>;</li>
+       <li><strong>Dor ou desconforto lombar;</strong></li>
+       <li><strong>Hematúria</strong> (presença de sangue na urina);</li>
+       <li><strong>Urgência miccional</strong> (retirou a sonda no dia anterior à data da infecção);</li>
+       <li><strong>Aumento da frequência miccional</strong> (retirou a sonda no dia anterior à data da infecção);</li>
+       <li><strong>Disúria</strong> (retirou a sonda no dia anterior à data da infecção)</li>
+     </ul>
+     <div class="plus">+</div>
+     <p><u>Cultura de urina positiva</u> com, no máximo, duas espécies bacterianas, com <strong>contagem de colônias ≥ 10<sup>5</sup> UFC/mL</strong> (100.000 UFC/mL) de pelo menos UMA espécie.</p>
+     <div class="plus">+</div>
+     <p class="obs">Os <strong>sinais/sintomas</strong> e a primeira <strong>urocultura positiva</strong> ocorreram no <strong>período de Janela de Infecção</strong> (intervalo temporal de 7 dias durante os quais são identificados as evidências acima)<sup>(1)</sup>.</p>`,
+   aspects:[
+     {title:'Sobre ITU-AC',type:'info',html:`
+       <p>É a Infecção Relacionada à Assistência em Saúde (IRAS) <strong>mais prevalente</strong>, e o principal fator de risco para sua ocorrência é a <strong>presença de um cateter vesical</strong>, onde o risco aumenta conforme a duração do uso deste dispositivo, que conecta meio externo e interno do corpo, dando passagem a microrganismos<sup>(2,4)</sup>.</p>`},
+     {title:'Atenção',type:'warning',html:`
+       <p>Os <strong>sintomas clínicos</strong> gerais de uma ITU incluem:</p>
+       <ul>
+         <li>Polaciúria (micção frequente)</li>
+         <li>Urgência miccional (vontade súbita e forte de urinar)</li>
+         <li>Disúria (sensação de ardor ao urinar)</li>
+         <li>Dor pélvica<sup>(2)</sup>.</li>
+       </ul>`},
+     {title:'Cuidado',type:'danger',html:`
+       <p>Cerca de metade dos casos de <strong>febre</strong> no paciente hospitalizado ocorrem devido à IRAS, incluindo as tão frequentes infecções urinárias<sup>(4)</sup>;</p>`},
+     {title:'Lembre-se',type:'success',html:`
+       <p>Se não tratada, a ITU pode levar a <strong>complicações graves</strong>, como sepse ou falência de órgãos<sup>(2)</sup>.</p>`},
+   ]},
 
-  {id:'uri1',cat:'urinaria',name:'Infecção do Trato Urinário',icon:'🫘',color:'#E8F5E9',badge:'badge-green2',badgeText:'Urinária',
-   summary:'Infecção bacteriana prevalente, especialmente em mulheres e idosos.',
-   definition:'ITU caracteriza-se pela presença e multiplicação de micro-organismos no trato urinário, podendo acometer uretra, bexiga (cistite) ou rins (pielonefrite).',
-   etiology:'Escherichia coli (80%), Klebsiella spp., Proteus mirabilis, Enterococcus faecalis, Staphylococcus saprophyticus.',
-   symptoms:['Disúria','Polaciúria','Urgência miccional','Hematúria','Dor suprapúbica','Urina turva ou fétida','Febre e calafrios (pielonefrite)'],
-   identification:['Exame de urina tipo 1 (EAS)','Urocultura com antibiograma','Leucocitúria e nitrito positivo','Hemograma (pielonefrite)','Ultrassonografia (casos complicados)'],
-   alertType:'info',alertText:'Pielonefrite requer internação e ATB IV. Coletar urocultura ANTES de iniciar antibiótico.',
-   note:'ITU recorrente (>3 episódios/ano): investigar fatores predisponentes e considerar profilaxia.'},
+  {id:'isc',cat:'cirurgica',name:'Infecção de Sítio Cirúrgico',sigla:'ISC',icon:'🩹',color:'#FCE4EC',badge:'badge-red2',badgeText:'IRAS • ISC',
+   question:'Estou diante de uma Infecção de Sítio Cirúrgico – ISC?',
+   summary:'Processo infeccioso relacionado a procedimento cirúrgico, em pacientes internados ou ambulatoriais.',
+   criteriaTitle:'O paciente se enquadra nos critérios definidores de ISC?',
+   criteria:`
+     <h5>Critérios iniciais para a identificação<sup>(1)</sup>:</h5>
+     <p>As <strong>infecções de Sítio Cirúrgico (ISC)</strong> correspondem a processos infecciosos relacionados à <strong>procedimentos cirúrgicos</strong> em pacientes internados ou ambulatoriais, sendo classificadas quanto à local e profundidade, conforme os critérios de sítios específicos:</p>
+     <ul>
+       <li><u>ISC Incisional Superficial (IS)</u> - infecção da região de pele e tecido subcutâneo à incisão;</li>
+       <li>ISC Incisional Profunda (IP) - Infecção que ocorre na região de fáscia ou dos músculos referentes ao local da incisão.</li>
+       <li><u>ISC Órgão/ Cavidade (OC)</u> - envolve um órgão, materiais implantados e/ou espaço anatômico mais profundo que as estruturas de fáscia e músculo<sup>(1,2)</sup>.</li>
+     </ul>
+     <p>A ISC ocorre quando bactérias penetram a região corporal por meio de incisões cirúrgicas OU quando são introduzidas na fase pós-operatória, por curativos ou outros meios. É importante destacar que este tipo de infecção pode ocorrer em até 30 ou 90 dias após o procedimento cirúrgico, a depender do tipo de procedimento, sendo o 1º dia a data de realização da cirurgia<sup>(1,2)</sup>.</p>
+     <h5>O que é um procedimento cirúrgico?</h5>
+     <p>Uma <strong>intervenção operatória em que há pelo menos uma incisão</strong> (incluindo abordagem laparoscópica e orifícios de broca craniana), realizada em um centro cirúrgico (sala de cirurgia, sala de cesariana, ou sala de radiologia intervencionista), feita através da pele, membrana mucosa ou através de uma incisão que foi deixada aberta durante um procedimento cirúrgico anterior<sup>(1)</sup>.</p>`,
+   signsTitle:'Há sinais clínicos e laboratoriais que sugerem ISC?',
+   signs:`
+     <h5>Evidências clínicas / laboratoriais<sup>(1)</sup>:</h5>
+     <p><u>Mediante Incisão Superficial</u>:</p>
+     <p>Apresenta pelo menos UM dos seguintes critérios:</p>
+     <ul>
+       <li><strong>Drenagem purulenta</strong> da incisão superficial;</li>
+       <li><strong>Microrganismo identificado</strong> em secreção ou em tecido da incisão superficial, obtido de forma asséptica (não serão considerados coletas de swabs) por cultura ou por outro método microbiológico;</li>
+       <li>A incisão superficial é <strong>deliberadamente aberta</strong> pelo cirurgião ou outro médico na vigência de, pelo menos, <strong>UM dos sinais ou sintomas</strong>: dor, aumento da sensibilidade, edema local, hiperemia ou calor;</li>
+       <li><strong>Diagnóstico de ISC-IS</strong> pelo cirurgião ou outro médico.</li>
+     </ul>
+     <p><u>Mediante Incisão Profunda</u>:</p>
+     <p>Apresenta pelo menos UM dos seguintes critérios:</p>
+     <ul>
+       <li><strong>Drenagem purulenta</strong> da incisão profunda (desde que não originada de órgão ou cavidade);</li>
+       <li><strong>Incisão profunda aberta ou aspirada</strong> pelo cirurgião ou outro médico, associada a:
+         <ul>
+           <li><strong>Microrganismo identificado</strong> em tecidos moles profundos da incisão por cultura ou outro método microbiológico OU ausência de exame para essa identificação (a cultura realizada com resultado negativo não se aplica)</li>
+         </ul>
+         <div class="plus">+</div>
+         <ul>
+           <li>Pelo menos <strong>UM dos sinais e sintomas</strong>: febre (temperatura &gt;38ºC), dor, ou aumento da sensibilidade localizada.</li>
+         </ul>
+       </li>
+       <li><strong>Abscesso ou outra evidência de infecção envolvendo tecidos profundos</strong>, detectado durante exame clínico, anatomopatológico ou de imagem;</li>
+       <li><strong>Diagnostico de ISC-IP</strong> feito pelo cirurgião ou médico assistente.</li>
+     </ul>
+     <p><u>Mediante Orgão/Cavidade</u>:</p>
+     <ul>
+       <li><strong>Drenagem purulenta de um dreno colocado no órgão/espaço</strong> (por exemplo, sistema de drenagem de sucção fechado, dreno aberto, dreno de tubo em T, drenagem guiada por TC);</li>
+       <li><strong>Microrganismo identificado</strong> em secreção ou tecido do órgão/cavidade, obtido assepticamente*1 por cultura ou outro método microbiológico;</li>
+       <li><strong>Presença de abscesso ou outra evidência que a infecção envolve os planos profundos</strong> da ferida (órgão/cavidade) identificada ao exame anatômico, histopatológico ou de imagem conclusivo ou sugestivo de infecção;</li>
+       <li><strong>Diagnóstico de ISC-OC</strong> pelo cirurgião preferencialmente, ou outro médico<sup>(1)</sup>.</li>
+     </ul>`,
+   aspects:[
+     {title:'Sobre ISC',type:'info',html:`
+       <ul>
+         <li>As ISC são passíveis de ocorrer em pacientes submetidos a cirurgias tanto em <strong>internações</strong>, quanto em <strong>regime ambulatorial</strong>, com breve permanência no serviço de saúde<sup>(2)</sup>;</li>
+         <li>Se houver mais de uma incisão, deve-se considerar a ocorrência de ISC em todas as incisões acometidas, devendo estas ser registradas e avaliadas<sup>(1)</sup>;</li>
+       </ul>`},
+     {title:'Atenção',type:'warning',html:`
+       <p>Uma intervenção cirúrgica pressupõe uma agressão ao paciente, que pode desenvolver uma síndrome de resposta inflamatória sistêmica e, consequentemente, febre. Isto é consequência do <strong>traumatismo cirúrgico</strong>, e costuma aparecer mais nas primeiras 24-48 horas após a intervenção, mas não representa um processo infeccioso de fato, bem como não demanda tratamento. Além disso, nas primeiras horas após a cirurgia pode haver hipertermia decorrente dos medicamentos anestésicos, sem correlação com microrganismos<sup>(4)</sup>.</p>`},
+     {title:'Cuidado',type:'danger',html:`
+       <p>De modo geral, ISCs tendem a produzir <strong>vermelhidão, edema, dor, sensibilidade local e drenagem de pus ou líquido no local da incisão</strong>. No entanto, a presença de uma inflamação mínima e drenagem de secreção limitada aos pontos de sutura, não podem ser considerados com ISC incisional, haja vista que se trata de uma resposta esperada do organismo mediante um processo cirúrgico<sup>(1,2)</sup>.</p>`},
+     {title:'Lembre-se',type:'success',html:`
+       <p>Para detecção de ISC, é fundamental que haja <strong>monitoramento e vigilância</strong> dos quadros clínicos, considerando o procedimento realizado:</p>
+       <ul><li><strong>90 dias</strong> para implante de prótese mamária, artroplastia primária de quadril e joelho, revascularização do miocárdio, derivação interna neurológica, cirurgia de catarata. E, <strong>30 dias</strong> para cirurgia cesariana<sup>(1)</sup>.</li></ul>`},
+   ]},
 
-  {id:'pele1',cat:'pele',name:'Celulite Bacteriana',icon:'🩹',color:'#FCE4EC',badge:'badge-red2',badgeText:'Pele',
-   summary:'Infecção bacteriana aguda da derme e tecido subcutâneo.',
-   definition:'A celulite é uma infecção bacteriana aguda não purulenta da derme e hipoderme, geralmente por estreptococos ou estafilococos.',
-   etiology:'Streptococcus pyogenes, Staphylococcus aureus (incluindo MRSA), Gram-negativos (imunossuprimidos).',
-   symptoms:['Eritema expansivo','Calor local','Edema','Dor intensa','Febre','Linfadenopatia regional','Pele brilhante e tensa'],
-   identification:['Diagnóstico clínico predominante','Hemograma: leucocitose','PCR e VHS elevados','Hemocultura (febre alta)','Cultura de secreção'],
-   alertType:'warning',alertText:'Diferenciar de erisipela e fasciite necrosante (emergência cirúrgica). Crepitação = EMERGÊNCIA.',
-   note:'Marcar com caneta os limites do eritema para monitorar progressão.'},
-
-  {id:'pele2',cat:'pele',name:'Erisipela',icon:'🔴',color:'#FFEBEE',badge:'badge-red2',badgeText:'Pele',
-   summary:'Infecção superficial da derme com eritema bem delimitado característico.',
-   definition:'A erisipela é infecção bacteriana superficial da derme com acometimento dos vasos linfáticos, caracterizada por placa eritematosa bem delimitada.',
-   etiology:'Streptococcus pyogenes (grupo A) — causa principal.',
-   symptoms:['Placa eritematosa bem delimitada','Bordas elevadas e nítidas','Calor e dor intensos','Febre alta','Calafrios','Linfangite','Bolhas (formas bolhosas)'],
-   identification:['Diagnóstico clínico','ASLO','Hemograma','Hemocultura (febre persistente)','Biópsia (casos atípicos)'],
-   alertType:'info',alertText:'Tratar com penicilina G IV (internados) ou amoxicilina oral (ambulatorial leve). Prevenir recidiva com penicilina benzatina mensal.',
-   note:'Principal porta de entrada: fissuras entre os dedos por tinea pedis. Tratar o fungo!'},
-
-  {id:'hosp1',cat:'hospitalar',name:'Infecção de Corrente Sanguínea',icon:'🩸',color:'#F3E5F5',badge:'badge-purple',badgeText:'Hospitalar',
-   summary:'ICSRC associada a cateter — uma das infecções hospitalares mais graves.',
-   definition:'Infecção de corrente sanguínea relacionada a cateter (ICSRC): bacteremia ou fungemia em paciente com cateter sem outro foco identificado.',
-   etiology:'S. coagulase-negativo, S. aureus, Enterococcus spp., Candida spp., Klebsiella spp., E. coli.',
-   symptoms:['Febre >38°C ou hipotermia','Calafrios intensos','Instabilidade hemodinâmica','Eritema/edema no sítio do cateter','Sinais de sepse'],
-   identification:['Hemoculturas pareadas (central + periférica)','Tempo diferencial de positividade','Cultura da ponta do cateter','Hemograma, PCR, Procalcitonina','Lactato sérico'],
-   alertType:'danger',alertText:'Remover cateter imediatamente quando ICSRC confirmada. Iniciar antibiótico empírico para MRSA (vancomicina).',
-   note:'Bundle de cateter: higienização das mãos, barreira máxima, clorexidina 2%, preferência pela veia subclávia.'},
-
-  {id:'hosp2',cat:'hospitalar',name:'Pneumonia Associada à VM',icon:'🫀',color:'#E8EAF6',badge:'badge-purple',badgeText:'Hospitalar',
-   summary:'PAV — principal infecção em UTI, com alta mortalidade.',
-   definition:'Pneumonia associada à ventilação mecânica (PAV): pneumonia que surge ≥48h após intubação endotraqueal e início de ventilação mecânica.',
-   etiology:'Pseudomonas aeruginosa, Acinetobacter baumannii, Klebsiella pneumoniae (ESBL+), S. aureus (MRSA), polimicrobiana.',
-   symptoms:['Novo infiltrado na RX','Febre ou hipotermia','Leucocitose ou leucopenia','Secreção traqueal purulenta','Queda da relação PaO2/FiO2'],
-   identification:['Cultura de secreção traqueal','Lavado broncoalveolar (padrão-ouro)','Hemograma, PCR','Procalcitonina','RX/TC de tórax','Hemocultura'],
-   alertType:'danger',alertText:'Bundle PAV: cabeceira 30-45°, higiene oral com clorexidina, pressão do cuff 20-30 cmH2O, interrupção diária de sedação.',
-   note:'Terapia de curta duração (7 dias) é recomendada para PAV sem imunossupressão ou Pseudomonas.'},
-
-  {id:'sist1',cat:'sistemica',name:'Sepse',icon:'⚠️',color:'#FFEBEE',badge:'badge-red2',badgeText:'Sistêmica',
-   summary:'Emergência médica — resposta desregulada do hospedeiro à infecção.',
-   definition:'Sepse: disfunção orgânica ameaçadora à vida causada por resposta desregulada do hospedeiro a uma infecção (Sepsis-3, 2016).',
-   etiology:'Qualquer agente infeccioso. Focos: pulmão (mais comum), abdome, trato urinário, corrente sanguínea, pele.',
-   symptoms:['Alteração aguda do SOFA ≥2 pontos','Hipotensão','Febre ou hipotermia','Taquicardia e taquipneia','Alteração do estado mental','Oligúria'],
-   identification:['Escore SOFA e qSOFA','Lactato sérico (>2 mmol/L)','Hemoculturas (2 pares antes ATB)','Hemograma, PCR, Procalcitonina','Função renal e hepática','Gasometria'],
-   alertType:'danger',alertText:'BUNDLE HORA 1: medir lactato, hemoculturas, antibiótico amplo espectro, cristaloides 30ml/kg, vasopressores se PAM<65. TEMPO É VIDA.',
-   note:'Choque séptico = sepse + vasopressor para PAM≥65 + lactato>2 mmol/L. Mortalidade: 40-50%.'},
-
-  {id:'sist2',cat:'sistemica',name:'Endocardite Infecciosa',icon:'❤️',color:'#FCE4EC',badge:'badge-red2',badgeText:'Sistêmica',
-   summary:'Infecção do endocárdio valvar — diagnóstico pelos critérios de Duke.',
-   definition:'A endocardite infecciosa (EI) é infecção do endocárdio, principalmente das válvulas cardíacas, formando vegetações que podem embolizar.',
-   etiology:'S. aureus (válvulas nativas), Streptococcus viridans (doença valvar prévia), Enterococcus, S. coagulase-negativo (próteses), Candida (UDIV).',
-   symptoms:['Febre persistente','Sopro cardíaco novo','Nódulos de Osler','Manchas de Janeway','Hemorragias em flâmula','Manchas de Roth','Esplenomegalia'],
-   identification:['Critérios de Duke','2-3 pares de hemoculturas','Ecocardiograma transtorácico/transesofágico','Hemograma, PCR, VHS','TC/PET-CT'],
-   alertType:'warning',alertText:'Iniciar antibiótico APENAS após hemoculturas (2 pares), salvo instabilidade hemodinâmica. Avaliação cirúrgica precoce.',
-   note:'EI em usuário de drogas IV: S. aureus, válvula tricúspide afetada principalmente.'},
+  {id:'ipcs',cat:'sanguinea',name:'Infecção Primária de Corrente Sanguínea',sigla:'IPCS',icon:'🩸',color:'#F3E5F5',badge:'badge-purple',badgeText:'IRAS • IPCS',
+   question:'Estou diante de uma Infecção Primária de Corrente Sanguínea – IPCS?',
+   summary:'Microrganismo na corrente sanguínea sem relação com outro foco primário de infecção.',
+   criteriaTitle:'O paciente se enquadra nos critérios definidores de IPCS?',
+   criteria:`
+     <h5>Critérios iniciais para a identificação<sup>(1)</sup>:</h5>
+     <p>A <strong>presença de um ou mais microrganismos (bactérias, vírus, fungos ou protozoários) na corrente sanguínea</strong>, cuja origem não está relacionada a nenhum outro foco primário de infecção (foco primário de outra IRAS). Nesta situação, o foco primário é a própria corrente sanguínea (ponto de partida/surgimento) e, por isso, a infecção é denominada de Infecção Primária de Corrente Sanguínea (IPCS).</p>
+     <h5>O que é um Cateter Venoso Central (CVC):</h5>
+     <p><strong>Dispositivo intravascular</strong> utilizado para infusão, coleta de amostra sanguínea ou monitoramento hemodinâmico, cuja terminação esteja posicionada próxima ao coração ou em um grande vaso (são considerados grandes vasos: aorta, artéria pulmonar, veias cavas, veias braquicefálicas, veias jugulares internas, veias subclávias, veias ilíacas externa e comum, veias femorais);</p>
+     <h5>Infecção Primária de Corrente Sanguínea Laboratorialmente Confirmada Associada a Cateter Central (IPCSL-CVC)</h5>
+     <p>Paciente em uso de cateter central por um período maior que 2 dias consecutivos (a partir do D3, sendo o dia da inserção considerado como D1, independentemente do horário de inserção) e que, na data da infecção, o paciente estava em uso do dispositivo ou este havia sido removido no dia anterior. Ademais, a infecção foi confirmada laboratorialmente, através da <strong>identificação de microrganismo bacteriano ou fúngico patogênico</strong> em uma ou mais hemoculturas<sup>(1)</sup>.</p>`,
+   signsTitle:'Há sinais clínicos e laboratoriais que sugerem IPCS?',
+   signs:`
+     <h5>Evidências laboratoriais / clínicas:</h5>
+     <p><u>IPCS:</u></p>
+     <p>Paciente adulto (ou criança com mais de 28 dias), que <strong>apresenta microrganismo patogênico</strong> bacteriano ou fúngico, não incluído na lista de microrganismos comensais (confira definição da ANVISA), isolado em amostra sanguínea,</p>
+     <div class="plus">+</div>
+     <ul>
+       <li>Identificado a partir de uma ou mais amostras de sangue obtidas em hemocultura;<br><strong>OU</strong><br>Identificado gênero e espécie (ou pelo menos o gênero), por métodos validados de teste microbiológico (testes moleculares, automatizados, realizados a partir de amostras de sangue) não baseado em cultura;</li>
+     </ul>
+     <div class="plus">+</div>
+     <ul><li>O <strong>microrganismo identificado não está relacionado a outro foco infeccioso</strong>;</li></ul>
+     <p><u>IPCSL:</u></p>
+     <p>Causada por microrganismo contaminante de pele em adultos e crianças (acima de 1 ano), que <strong>apresente pelo menos UM dos seguintes sinais ou sintomas</strong>:</p>
+     <ul>
+       <li>Febre (&gt;38°C)</li>
+       <li>Calafrios</li>
+       <li>Hipotensão (pressão sistólica ≤ 90 mmHg em adultos);</li>
+     </ul>
+     <div class="plus">+</div>
+     <ul><li><strong>Apresenta microrganismos contaminantes de pele</strong> (comensais 1a,1b), por exemplo: Corynebacterium spp. (exclui C. diphtheriae), Bacillus spp. (exclui B. anthracis), Propionibacterium spp., Staphylococcus coagulase negativo, Streptococcus do grupo viridans, Aerococcus spp. e Micrococcus spp, <strong>identificados em DUAS ou MAIS hemoculturas</strong>, coletadas em momentos distintos, no mesmo dia ou no máximo no dia seguinte;</li></ul>
+     <div class="plus">+</div>
+     <ul><li>O microrganismo identificado não está relacionado a outro foco infeccioso.</li></ul>
+     <div class="plus">+</div>
+     <p class="obs">Os sinais/sintomas e o resultado da hemocultura ocorreram no <strong>período de janela da Infecção</strong><sup>(1)</sup>.</p>`,
+   aspects:[
+     {title:'Sobre IPCS',type:'info',html:`
+       <p>As infecções da corrente sanguínea causam <strong>febre (&gt;38ºC) como um dos sinais iniciais</strong> e principais, que antecede agravamentos severos, como disfunção orgânica e choque séptico<sup>(2,4,6,14)</sup>.</p>`},
+     {title:'Atenção',type:'warning',html:`
+       <ul>
+         <li>A inserção e o manuseio frequentes e inseguros de dispositivos intravasculares assim como o uso de equipamentos contaminados, aumentam consideravelmente o risco para ocorrência de infecção!<sup>(2)</sup></li>
+         <li>Pacientes com início abrupto de sinais e sintomas de sepse sem fatores de risco, especialmente sem qualquer foco local de infecção, levantam suspeitas importantes de infecção associada à um dispositivo intravascular, e este pode já estar apresentando falhas na funcionalidade e até sinais flogísticos produzidos<sup>(6)</sup>.</li>
+       </ul>`},
+     {title:'Cuidado',type:'danger',html:`
+       <p>A gravidade clínica na admissão hospitalar, e a imunossupressão do paciente, elevam os riscos para IPCS, por isso a importância da cautela rigorosa na avaliação inicial e contínua do paciente<sup>(2)</sup>.</p>`},
+     {title:'Lembre-se',type:'success',html:`
+       <p>Os profissionais de saúde devem priorizar um exame físico direcionado, mesmo em ambientes com grande fluxo de pacientes. É crucial inspecionar e avaliar ativamente os locais de inserção do cateter para prevenir complicações adicionais<sup>(6,14)</sup>.</p>`},
+   ]},
 ];
 
 const libraryItems = [
@@ -156,8 +296,8 @@ function renderInfections(list) {
          onkeydown="if(event.key==='Enter')openDetail('${inf.id}')">
       <div class="inf-card-img" style="background:${inf.color}">${inf.icon}</div>
       <div class="inf-card-body">
-        <h4>${inf.name}</h4>
-        <p>${inf.summary.substring(0,55)}...</p>
+        <h4>${inf.name} – ${inf.sigla}</h4>
+        <p>${inf.summary}</p>
         <span class="inf-badge ${inf.badge}">${inf.badgeText}</span>
       </div>
     </div>`).join('');
@@ -174,41 +314,39 @@ function applyInfFilter() {
   const q = (document.getElementById('infSearch').value || '').toLowerCase();
   let list = infections;
   if(currentFilter !== 'todos') list = list.filter(i => i.cat === currentFilter);
-  if(q) list = list.filter(i => i.name.toLowerCase().includes(q) || i.summary.toLowerCase().includes(q));
+  if(q) list = list.filter(i => i.name.toLowerCase().includes(q) || i.sigla.toLowerCase().includes(q) || i.summary.toLowerCase().includes(q));
   renderInfections(list);
 }
 
 function openDetail(id) {
   const inf = infections.find(i => i.id === id);
   if(!inf) return;
-  const alertIcon = inf.alertType==='danger'?'exclamation-circle':inf.alertType==='warning'?'exclamation-triangle':'info-circle';
-  document.getElementById('detailTitle').textContent = inf.name;
+  const aspectIcons = {info:'circle-info',warning:'triangle-exclamation',danger:'circle-exclamation',success:'brain'};
+  document.getElementById('detailTitle').textContent = inf.sigla;
   document.getElementById('detailBadge').textContent = inf.badgeText;
   document.getElementById('detailContent').innerHTML = `
-    <div class="detail-hero" onclick="openImgModal('${inf.icon}','${inf.name}')">${inf.icon}</div>
-    <div class="info-section">
-      <h3><i class="fas fa-book-open"></i> Definição</h3>
-      <p>${inf.definition}</p>
+    <div class="iras-question">
+      <span>${inf.name}</span>
+      <h3>${inf.question}</h3>
     </div>
-    <div class="info-section">
-      <h3><i class="fas fa-dna"></i> Etiologia</h3>
-      <p>${inf.etiology}</p>
+    <div class="iras-alert-label"><i class="fas fa-bell"></i> Identificando ${inf.sigla} na assistência ao paciente — Evidências de alerta potencial</div>
+    <div class="iras-box iras-criteria">
+      <div class="iras-box-head"><i class="fas fa-user-check"></i> ${inf.criteriaTitle}</div>
+      <div class="iras-box-body">${inf.criteria}</div>
     </div>
-    <div class="info-section">
-      <h3><i class="fas fa-thermometer-half"></i> Sinais e Sintomas</h3>
-      <div class="symptom-list">${inf.symptoms.map(s=>`<span class="symptom-tag"><i class="fas fa-circle-dot"></i>${s}</span>`).join('')}</div>
+    <div class="iras-box iras-signs">
+      <div class="iras-box-head"><i class="fas fa-stethoscope"></i> ${inf.signsTitle}</div>
+      <div class="iras-box-body">${inf.signs}</div>
     </div>
-    <div class="info-section">
-      <h3><i class="fas fa-microscope"></i> Métodos de Identificação</h3>
-      <ul>${inf.identification.map(i=>`<li>${i}</li>`).join('')}</ul>
-    </div>
-    <div class="alert-box ${inf.alertType}">
-      <i class="fas fa-${alertIcon}"></i>
-      <p>${inf.alertText}</p>
-    </div>
-    <div class="info-section">
-      <h3><i class="fas fa-lightbulb"></i> Observações Importantes</h3>
-      <p>${inf.note}</p>
+    <div class="iras-box iras-aspects">
+      <div class="iras-box-head"><i class="fas fa-lightbulb"></i> Aspectos importantes</div>
+      <div class="iras-box-body">
+        ${inf.aspects.map(a=>`
+          <div class="iras-aspect ${a.type}">
+            <h5><i class="fas fa-${aspectIcons[a.type]}"></i> ${a.title}</h5>
+            ${a.html}
+          </div>`).join('')}
+      </div>
     </div>
     <div style="height:24px"></div>`;
   document.getElementById('detailPage').classList.add('open');
