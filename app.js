@@ -1,5 +1,5 @@
 const infections = [
-  {id:'pav',cat:'respiratoria',name:'Pneumonia Associada à Ventilação Mecânica',sigla:'PAV',icon:'🫁',color:'#E3F2FD',badge:'badge-blue',badgeText:'IRAS • PAV',
+  {id:'pav',cat:'respiratoria',name:'Pneumonia Associada à Ventilação Mecânica',sigla:'PAV',img:'img/1.jpeg',color:'#E3F2FD',badge:'badge-blue',badgeText:'IRAS • PAV',
    question:'Estou diante de uma Pneumonia Associada à Ventilação Mecânica – PAV?',
    summary:'Pneumonia em paciente em uso de ventilação mecânica por mais de dois dias consecutivos.',
    criteriaTitle:'O paciente se enquadra nos critérios definidores de PAV?',
@@ -60,7 +60,7 @@ const infections = [
        </ul>`},
    ]},
 
-  {id:'itu-ac',cat:'urinaria',name:'Infecção de Trato Urinário Associada à Cateter Vesical de Demora',sigla:'ITU-AC',icon:'🫘',color:'#E8F5E9',badge:'badge-green2',badgeText:'IRAS • ITU-AC',
+  {id:'itu-ac',cat:'urinaria',name:'Infecção de Trato Urinário Associada à Cateter Vesical de Demora',sigla:'ITU-AC',img:'img/2.jpeg',color:'#E8F5E9',badge:'badge-green2',badgeText:'IRAS • ITU-AC',
    question:'Estou diante de uma Infecção de Trato Urinário Associada à Cateter Vesical de Demora – ITU-AC?',
    summary:'Infecção urinária em paciente com cateter vesical de demora por mais de dois dias consecutivos.',
    criteriaTitle:'O paciente se enquadra nos critérios definidores de ITU / ITU-RAS / ITU-AC?',
@@ -107,7 +107,7 @@ const infections = [
        <p>Se não tratada, a ITU pode levar a <strong>complicações graves</strong>, como sepse ou falência de órgãos<sup>(2)</sup>.</p>`},
    ]},
 
-  {id:'isc',cat:'cirurgica',name:'Infecção de Sítio Cirúrgico',sigla:'ISC',icon:'🩹',color:'#FCE4EC',badge:'badge-red2',badgeText:'IRAS • ISC',
+  {id:'isc',cat:'cirurgica',name:'Infecção de Sítio Cirúrgico',sigla:'ISC',img:'img/4.jpeg',color:'#FCE4EC',badge:'badge-red2',badgeText:'IRAS • ISC',
    question:'Estou diante de uma Infecção de Sítio Cirúrgico – ISC?',
    summary:'Processo infeccioso relacionado a procedimento cirúrgico, em pacientes internados ou ambulatoriais.',
    criteriaTitle:'O paciente se enquadra nos critérios definidores de ISC?',
@@ -171,7 +171,7 @@ const infections = [
        <ul><li><strong>90 dias</strong> para implante de prótese mamária, artroplastia primária de quadril e joelho, revascularização do miocárdio, derivação interna neurológica, cirurgia de catarata. E, <strong>30 dias</strong> para cirurgia cesariana<sup>(1)</sup>.</li></ul>`},
    ]},
 
-  {id:'ipcs',cat:'sanguinea',name:'Infecção Primária de Corrente Sanguínea',sigla:'IPCS',icon:'🩸',color:'#F3E5F5',badge:'badge-purple',badgeText:'IRAS • IPCS',
+  {id:'ipcs',cat:'sanguinea',name:'Infecção Primária de Corrente Sanguínea',sigla:'IPCS',img:'img/3.jpeg',color:'#F3E5F5',badge:'badge-purple',badgeText:'IRAS • IPCS',
    question:'Estou diante de uma Infecção Primária de Corrente Sanguínea – IPCS?',
    summary:'Microrganismo na corrente sanguínea sem relação com outro foco primário de infecção.',
    criteriaTitle:'O paciente se enquadra nos critérios definidores de IPCS?',
@@ -230,9 +230,27 @@ const libraryItems = [
   {id:'l6',cat:'caso',icon:'📖',title:'Caso Clínico: PAV por Acinetobacter',summary:'Paciente em VM há 10 dias evolui com novo infiltrado e piora respiratória. Diagnóstico diferencial e conduta.',badge:'badge-orange',badgeText:'Caso Clínico'},
   {id:'l7',cat:'artigo',icon:'🔬',title:'Sepsis-3: Nova Definição de Sepse',summary:'Singer M et al. The Third International Consensus Definitions for Sepsis and Septic Shock. JAMA, 2016.',badge:'badge-purple',badgeText:'Artigo Científico'},
   {id:'l8',cat:'artigo',icon:'🔬',title:'Surviving Sepsis Campaign 2021',summary:'Evans L et al. Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021.',badge:'badge-purple',badgeText:'Artigo Científico'},
-  {id:'l9',cat:'referencia',icon:'📚',title:'ANVISA — Manual de IRAS',summary:'Critérios diagnósticos de Infecções Relacionadas à Assistência à Saúde. Brasília: ANVISA, 2017.',badge:'badge-red2',badgeText:'Referência'},
-  {id:'l10',cat:'referencia',icon:'📚',title:"Harrison's Principles of Internal Medicine",summary:'Kasper DL et al. 21ª ed. New York: McGraw-Hill, 2022. Capítulos de Doenças Infecciosas.',badge:'badge-red2',badgeText:'Referência'},
+  {id:'l9',cat:'referencia',icon:'📚',title:'Referências Bibliográficas',summary:'As 14 referências científicas que fundamentam o conteúdo da plataforma (ANVISA, OMS e artigos internacionais).',badge:'badge-red2',badgeText:'Referência'},
 ];
+
+const refLink = url => `<a href="${url}" target="_blank" rel="noopener">${url}</a>`;
+
+const references = [
+  `BRASIL. Agência Nacional de Vigilância Sanitária - ANVISA. <strong>Nota técnica GVIMS/GGTES nº 03/2026: critérios diagnósticos das infecções relacionadas à assistência à saúde (IRAS)</strong>. Brasília, DF: ANVISA, 2026. Versão republicada em 14 de julho de 2026. Disponível em: ${refLink('https://www.gov.br/anvisa/pt-br/centraisdeconteudo/publicacoes/servicosdesaude/notas-tecnicas/notas-tecnicas-vigentes/nota-tecnica-03-2026-criterios-de-iras-02-01-2026.pdf')}. Acesso em: 21 out. 2026.`,
+  `WORLD HEALTH ORGANIZATION. WHO. <strong>Surveillance of health care-associated infections at national and facility levels: practical handbook</strong>. Geneva: World Health Organization, 2024. Disponível em: ${refLink('https://www.who.int/publications/i/item/9789240101456')}. Acesso em: 21 out. 2026.`,
+  `BRASIL. Agência Nacional de Vigilância Sanitária - ANVISA. <strong>Critérios diagnósticos de infecção relacionada à assistência à saúde</strong>. Série Segurança do Paciente e Qualidade em Serviços de Saúde, Caderno 2. Brasília, DF: ANVISA, 2017. Disponível em: ${refLink('https://www.gov.br/anvisa/pt-br/centraisdeconteudo/publicacoes/servicosdesaude/publicacoes/caderno-2-criterios-diagnosticos-de-infeccao-relacionada-a-assistencia-a-saude.pdf/view')}. Acesso em: 21 out. 2026.`,
+  `ALLENDE, J. M. B. Síndrome febril en el paciente hospitalizado. <strong>Medicine: Programa de Formación Médica Continuada Acreditado</strong>, v. 12, n. 92, p. 5405-5413, dez. 2019. DOI: ${refLink('https://doi.org/10.1016/j.med.2019.12.003')}. Acesso em: 11 out. 2026.`,
+  `GIANG, C.; CALVERT, J.; RAHMANI, K.; BARNES, G.; SIEFKAS, A.; GREEN-SAXENA, A.; <em>et al</em>. Predicting ventilator-associated pneumonia with machine learning. <strong>Medicine</strong> (Baltimore), v. 100, n. 23, e26246, 11 jun. 2021. Doi: ${refLink('https://doi.org/10.1097/MD.0000000000026246')}. Disponível em: ${refLink('https://pmc.ncbi.nlm.nih.gov/articles/PMC8202554/')}. Acesso em: 21 out. 2026.`,
+  `O’GRADY, N. P.; BARIE, P. S.; BARTLETT, J. G.; BLECK, T.; CARROLL, K.; CALIL, A. C.; <em>et al</em>. Guidelines for evaluation of new fever in critically ill adult patients: 2008 update from the American College of Critical Care Medicine and the Infectious Diseases Society of America. <strong>Critical Care Medicine</strong>, v. 36, n. 4, p. 1330–1349, 2008. Doi: ${refLink('https://doi.org/10.1097/CCM.0b013e318169eda9')}. Disponível em: ${refLink('https://www.ovid.com/jnls/ccmjournal/fulltext/10.1097/ccm.0b013e318169eda9~guidelines-for-evaluation-of-new-fever-in-critically-ill')}. Acesso em: 21 out. 2026.`,
+  `RUSSELL, C. D.; KOCH, O.; LAURENSON, I. F.; O'SHEA, D. T.; SUTHERLAND, R.; MACKINTOSH, C. L. Diagnosis and features of hospital-acquired pneumonia: a retrospective cohort study. <strong>Journal of Hospital Infection</strong>, v. 92, n. 3, p. 273-279, 2016. Doi: 10.1016/j.jhin.2015.11.013. Disponível em: ${refLink('https://www.journalofhospitalinfection.com/article/S0195-6701(15)00493-4/fulltext')}. Acesso em: 14 out. 2026.`,
+  `CRAVEN, D. E.; HJALMARSON, K. I. Ventilator-associated tracheobronchitis and pneumonia: thinking outside the box. <strong>Clinical Infectious Diseases</strong>, v. 51, supl. 1, p. S59-S66, 2010. Doi: 10.1086/653051. Disponível em: ${refLink('https://academic.oup.com/cid/article-abstract/51/Supplement_1/S59/420477?redirectedFrom=fulltext')}. Acesso em: 14 out. 2026.`,
+  `BOZORGMEHR, R.; BAHRANI, V.; FATEMI, A. Ventilator-Associated Pneumonia and Its Responsible Germs; an Epidemiological Study. <strong>Emergency</strong>, v. 5, n. 1, e26, 2017. Disponível em: ${refLink('https://pmc.ncbi.nlm.nih.gov/articles/PMC5325895/')}. Acesso em: 22 out. 2026.`,
+  `FALLY, M.; HASEEB, F.; KOUTA, A.; HANSEL, J.; ROBEY, R. C.; WILLIAMS, T.; et al. Unravelling the complexity of ventilator-associated pneumonia: a systematic methodological literature review of diagnostic criteria and definitions used in clinical research. Critical Care, v. 28, art. 214, 2024. Doi: ${refLink('https://doi.org/10.1186/s13054-024-04991-3')}. Disponível em: ${refLink('https://link.springer.com/article/10.1186/s13054-024-04991-3')}. Acesso em: 22 out. 2026.`,
+  `ROSBOLT, M. B.; STERLING, E. S.; FAHY, B. G. The utility of the clinical pulmonary infection score. Journal of Intensive Care Medicine, v. 24, n. 1, p. 26-34, 2009. Doi: ${refLink('https://doi.org/10.1177/0885066608327097')}. Disponível em: ${refLink('https://pubmed.ncbi.nlm.nih.gov/19019839/')}. Acesso em: 22 out. 2026.`,
+  `VAZQUEZ, R.; GHEORGHE, C.; RAMOS, F.; DADU, R.; AMOATENG-ADJEPONG, Y.; MANTHOUS, C. A. Gurgling breath sounds may predict hospital-acquired pneumonia. <strong>Chest</strong>, v. 138, n. 2, p. 284-288, 2010. Doi: ${refLink('https://doi.org/10.1378/chest.09-2713')}. Disponível em: ${refLink('https://journal.chestnet.org/article/S0012-3692(10)60408-4/abstract')}. Acesso em: 22 out. 2026.`,
+  `CABRERA, R. A.; LAGUNA, H. G.; VILLAGÓMEZ, O. A. J.; MÉNDEZ, R. R.; GUZMÁN, G. R. Nosocomial pneumonia: a common problem that deserves higher attention. <strong>Medicina Interna de México</strong>, v. 25, n. 1, p. 31-37, 2009. Disponível em: ${refLink('https://www.medigraphic.com/cgi-bin/new/resumenI.cgi?IDARTICULO=25140')}. Acesso em: 22 out. 2026.`,
+  `HADANO, Y.; INOUE, T. Unraveling the mystery of fever source: the vital role of physical examination in hospitalized patients with emphasis on peripheral line-associated bloodstream infections. <strong>Cureus</strong>, v. 15, n. 7, e42301, 2023. Doi: ${refLink('https://doi.org/10.7759/cureus.42301')}. Disponível em: ${refLink('https://www.cureus.com/articles/169916-unraveling-the-mystery-of-fever-source-the-vital-role-of-physical-examination-in-hospitalized-patients-with-emphasis-on-peripheral-line-associated-bloodstream-infections')}. Acesso em: 22 out. 2026.`,
+].map((html, i) => ({n:i+1, html}));
 
 const guideQuestions = [
   {id:'q1',q:'O paciente apresenta febre (≥38°C) ou hipotermia (<36°C)?',yes:'q2',no:'q5'},
@@ -294,7 +312,7 @@ function renderInfections(list) {
   document.getElementById('infectionsGrid').innerHTML = list.map(inf => `
     <div class="inf-card" onclick="openDetail('${inf.id}')" tabindex="0"
          onkeydown="if(event.key==='Enter')openDetail('${inf.id}')">
-      <div class="inf-card-img" style="background:${inf.color}">${inf.icon}</div>
+      <div class="inf-card-img" style="background:${inf.color}"><img src="${inf.img}" alt="${inf.name}"></div>
       <div class="inf-card-body">
         <h4>${inf.name} – ${inf.sigla}</h4>
         <p>${inf.summary}</p>
@@ -461,16 +479,34 @@ function toggleCheck(id) {
 }
 
 function renderLibrary(list) {
-  document.getElementById('libraryList').innerHTML = list.map(item => `
-    <div class="lib-card" tabindex="0" onclick="openImgModal('${item.icon}','${item.title}')"
-         onkeydown="if(event.key==='Enter')openImgModal('${item.icon}','${item.title}')">
+  document.getElementById('libraryList').innerHTML = list.map(item => {
+    const action = item.cat==='referencia' ? 'showReferences()' : `openImgModal('${item.icon}','${item.title}')`;
+    return `
+    <div class="lib-card" tabindex="0" onclick="${action}"
+         onkeydown="if(event.key==='Enter')${action}">
       <div class="lib-card-icon">${item.icon}</div>
       <div class="lib-card-body">
         <h4>${item.title}</h4>
         <p>${item.summary}</p>
         <span class="lib-badge ${item.badge}">${item.badgeText}</span>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
+}
+
+function renderReferences(list) {
+  document.getElementById('libraryList').innerHTML = `
+    <div class="section-title"><i class="fas fa-book"></i> Referências bibliográficas</div>
+    ${list.map(r => `
+    <div class="ref-item">
+      <span class="ref-num">${r.n}</span>
+      <p>${r.html}</p>
+    </div>`).join('') || '<p class="ref-empty">Nenhuma referência encontrada.</p>'}`;
+}
+
+function showReferences() {
+  setLibFilter(document.getElementById('libChipRef'), 'referencia');
+  window.scrollTo(0,0);
 }
 
 function setLibFilter(el, cat) {
@@ -482,6 +518,10 @@ function setLibFilter(el, cat) {
 
 function applyLibFilter() {
   const q = (document.getElementById('libSearch').value || '').toLowerCase();
+  if(currentLibFilter === 'referencia') {
+    renderReferences(references.filter(r => !q || r.html.replace(/<[^>]+>/g,'').toLowerCase().includes(q)));
+    return;
+  }
   let list = libraryItems;
   if(currentLibFilter !== 'todos') list = list.filter(i => i.cat === currentLibFilter);
   if(q) list = list.filter(i => i.title.toLowerCase().includes(q) || i.summary.toLowerCase().includes(q));
