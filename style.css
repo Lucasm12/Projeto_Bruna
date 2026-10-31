@@ -190,6 +190,7 @@ body{
   transition:.2s;white-space:nowrap;font-family:'Poppins',sans-serif;
 }
 .chip.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+#page-library .chip.active{background:var(--accent);border-color:var(--accent);}
 .infections-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 @media(min-width:600px){.infections-grid{grid-template-columns:repeat(3,1fr);}}
 .inf-card{
