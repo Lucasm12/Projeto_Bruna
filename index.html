@@ -256,6 +256,29 @@
   </div>
 </div>
 
+<!-- PDF MODAL -->
+<div class="pdf-modal" id="pdfModal" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+  <div class="pdf-modal-inner">
+    <div class="pdf-modal-header">
+      <i class="fas fa-file-lines" aria-hidden="true"></i>
+      <h3 id="pdfModalTitle"></h3>
+      <button class="pdf-modal-close" onclick="closePdfModal()" aria-label="Fechar"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="pdf-modal-body" id="pdfModalBody"></div>
+    <div class="pdf-modal-footer">
+      <div class="pdf-zoom" aria-label="Zoom">
+        <button onclick="zoomPdf(-1)" aria-label="Diminuir zoom"><i class="fas fa-minus"></i></button>
+        <button class="pdf-zoom-label" id="pdfZoomLabel" onclick="zoomPdf(0)" aria-label="Restaurar zoom">100%</button>
+        <button onclick="zoomPdf(1)" aria-label="Aumentar zoom"><i class="fas fa-plus"></i></button>
+      </div>
+      <div class="pdf-actions">
+        <a class="pdf-btn pdf-btn-secondary" id="pdfOpenLink" target="_blank" rel="noopener" aria-label="Abrir em nova aba"><i class="fas fa-up-right-from-square"></i><span>Abrir</span></a>
+        <a class="pdf-btn" id="pdfDownloadLink" download><i class="fas fa-download"></i> Baixar PDF</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Secret trigger: toque 5x no canto superior direito -->
 <div class="secret-trigger" onclick="secretTap()" title=""></div>
 
